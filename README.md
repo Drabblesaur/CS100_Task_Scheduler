@@ -5,13 +5,21 @@
 Authors: [August Bennett](https://github.com/augustpbennett), [Johnny To](https://github.com/Drabblesaur), [Lorenzo Gonzalez](https://github.com/lorenzog1), [Nick Lin](https://github.com/YYUWS)
  
 
-## Project Description
+# Project Description
+
+### Why it is Important.
 
 Either in school or work, sometimes we feel overwhelmed with the amount of tasks and instructions that we need to perform week by week. Ways to organize these task is paramount for students or even heavy workflows.
 
-In this application, a user can create tasks including a title, description, classification (e.g. personal, work, study), priority, duration, and due date. Some of these features can also be optional. Users can also create task lists where each list includes multiple tasks. Task lists can represent larger tasks that have subtasks within them. Users can display, edit, and delete tasks and task lists. Users should also be able to undo these operations. This project in written in C++ and will be run via the terminal.
+### What languages/tools/technologies do you plan to use?
 
-### TLDR
+This project will be written in C++ and will be run via the terminal. (This may change during development). There is ongoing discussion and research in what to do for the GUI of this project.
+
+### I/O and Features
+
+In this application, a user can create tasks including a title, description, classification (e.g. personal, work, study), priority, duration, and due date. Some of these features can also be optional. Users can also create task lists where each list includes multiple tasks. Task lists can represent larger tasks that have subtasks within them. Users can display, edit, and delete tasks and task lists. Users should also be able to undo these operations.
+
+### TLDR: Features
 
 Create Detailed Tasks  
 
