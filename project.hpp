@@ -15,6 +15,9 @@ private:
 	int priority;
         bool isComplete;
 public:
+	project();
+	~project();
+	task(string nm, string d, int p);
         string get_name();
         void set_name(string n);
         string get_date();
