@@ -1,14 +1,17 @@
 #include "task.hpp" // also includes vector
 #include <iostream>
+#include <ctime>
+#include <string>
+#include 
 
 task::task() {
     name = "";
-    date = "";
+    string date = "";
     priority = 0;
     isComplete = false;
 }
 
-task::task(string nm, string d, int p) {
+task::task(string nm, Date d, int p) {
     name = nm;
     date = d;
     priority = p;
@@ -29,12 +32,23 @@ void task::set_name(string n) {
     name = n;
 }
 
-string task::get_date() {
-    return date;
+string task::get_date() { 
+    if (datestr == "") {
+        return " ";
+    }
+    else
+        return datestr;
 }
 
-void task::set_date(string d) {
-    date = d;
+void task::set_date(string d) { //Takes a string of form MM/DD/YYYY -> Date obj and store in class.
+    datestr = d;
+}
+
+Date task::convert_date(){
+    int d = std::stoi(datestr.substr(0,2));
+    int m = std::stoi(datestr.substr(3,3));
+    int y = std::stoi(datestr.substr(7,4));
+    return Date(d,m,y);
 }
 
 int task::get_priority() {

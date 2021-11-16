@@ -3,13 +3,14 @@
 
 #include <vector>
 #include <string>
+#include "Date.hpp"
 
 using std::string;
 using std::vector;
 class task {
     private:
         string name; 
-        string date; // how to implement date? string, custom date object etc
+        string datestr; // how to implement date? string, custom date object etc
         int priority;
         bool isComplete;
         vector<task *> subs;
@@ -23,6 +24,7 @@ class task {
         void set_name(string n);
         string get_date();
         void set_date(string d);
+        Date convert_date();
         int get_priority();
         void set_priority(int p);
         bool complete();                                // returns current state of completion
