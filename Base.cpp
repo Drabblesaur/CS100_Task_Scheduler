@@ -2,7 +2,6 @@
 Base::Base(){
     name = "";
     description = "";
-    tasksList = new std::vector<Base*>();
 
 
 }
@@ -22,6 +21,8 @@ std::string Base::getDescription(){
     return description;
 };
 
+//NOT DELETING THIS CODE FOR NOW MAY BE USEFUL FOR YOU GUYS LATER
+/*
 int Base::addTask(Base* t){
     tasksList.push_back(t);
 }
@@ -55,3 +56,4 @@ Base Base::getTask(Base* t){
 vector<Base *> Base::getTaskList(){
     return tasksList;
 }
+*/

@@ -9,7 +9,6 @@ class Base{
     private:
         std::string name;
         std::string description;
-        std::vector<Base *> tasksList;
     
     public:
         Base();
@@ -19,16 +18,7 @@ class Base{
 
         std::string getName();
         std::string getDescription();
-
-        int addTask(Base* t);
-        int removeTask(Base* t);
-        int editTaskName(Base* nt,std::string name);
-        int editTaskDescription(Base* nt, std::string description);
-        Base getTask(Base* t);
-        vector<Base *> getTasksList();
        
-        
-
 };
 
 #endif
