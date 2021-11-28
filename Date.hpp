@@ -1,3 +1,5 @@
+#ifndef __DATE_HPP__
+#define __DATE_HPP__
 #include <string>
 class Date{
     private:
@@ -5,10 +7,20 @@ class Date{
         int month;
         int year;
     public:
-        Date(int day, int month, int year);
-        void setDay(int day);
-        void setMonth(int month);
-        void setYear(int year);
+        Date(int d, int m, int y){
+            day = d;
+            month = m;
+            year = y;
+        }
+        void setDay(int d){
+            day = d;
+        }
+        void setMonth(int m){
+            month = m;
+        }
+        void setYear(int y){
+            year = y;
+        }
         int getDay(){
             return day;
         }
@@ -23,3 +35,4 @@ class Date{
         };
         
 };
+#endif
