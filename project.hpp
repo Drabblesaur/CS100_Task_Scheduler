@@ -12,24 +12,24 @@ class project{
 private:
 	string name; 
         string date;
-	int priority;
+	//int priority;
         bool isComplete;
 	string type;
 public:
 	project();
 	~project();
-//	task(string nm, string d, int p);
+	project(string nm, string d, int p);
         string get_name();
         void set_name(string n);
         string get_date();
         void set_date(string d);
-        int get_priority();
-        void set_priority(int p);
+        //int get_priority();
+        //void set_priority(int p);
 	void proj_type( string t);
 	string get_type();
-  //      bool complete();
-//	void mark_as_complete();
-//	void mark_as_incomplete();
+  	 bool complete();
+	void mark_as_complete();
+	void mark_as_incomplete();
 	
 };
 #endif

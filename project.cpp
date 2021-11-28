@@ -37,10 +37,27 @@ void project::set_date(string d) {
     date = d;
 }
 
-int project::get_priority() {
+bool task::complete() {    // returns current state of completion
+    if (!has_subtasks()) { // if task has no subs, return state of current task
+        return isComplete;
+    }
+    for (unsigned i = 0; i < subs.size(); i++) {
+    	if (!(subs.at(i).complete())) { // if any one subtask is incomplete, return false
+    	return false;
+    }
+}
+    return true;                        // if task has subtasks and none are incomplete, return true
+	return isComplete;
+}
+
+void task::mark_as_incomplete() {
+    isComplete = false;
+}
+
+/*int project::get_priority() {
     return priority;
 }
 
 void project::set_priority(int p) {
     priority = p;
-}
+}*/
