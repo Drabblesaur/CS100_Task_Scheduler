@@ -4,30 +4,43 @@
 #include <vector>
 #include <string>
 #include "Date.hpp"
+#include "Base.hpp"
+#include "subtask.hpp"
 
 using std::string;
 using std::vector;
-class task {
+class task : public Base {
     private:
-        string name; 
-        string datestr; // how to implement date? string, custom date object etc
+        string datestr;
+        Date date;
         int priority;
         bool isComplete;
-        vector<task *> subs;
+        vector<subtask *> subs;
         bool has_subtasks();                            // returns true if a task has subtasks
                                                         // private helper for mark_as_complete()
     public:
-        task();
+        task() : Base() {
+            datestr = "";
+            date = convert_date();
+            priority = 0;
+            isComplete = false;
+        }
+
         ~task();
-        task(string nm, string d, int p); // potentially update depending on date format
-        string get_name();
-        void set_name(string n);
+
+        task(string d, int p) : Base() {
+            datestr = d;
+            date = convert_date();
+            priority = p;
+            isComplete = false;
+        }
+
+        bool complete();                                // returns current state of completion
+        Date convert_date();
         string get_date();
         void set_date(string d);
-        Date convert_date();
         int get_priority();
         void set_priority(int p);
-        bool complete();                                // returns current state of completion
         void mark_as_complete();                        // sets current task to complete
         void mark_as_incomplete();                      // sets current task to inomplete
         void add_subtask();                             // pushes new subtask to subs vector (default)
