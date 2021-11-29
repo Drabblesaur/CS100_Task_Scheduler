@@ -4,32 +4,34 @@
 #include <vector>
 #include <string>
 #include "Date.hpp"
+#include "Base.hpp"
+#include "task.hpp"
 
 using std::string;
 using std::vector;
 
-class project{
+class project:public Base{
 private:
-	string name; 
         string date;
-	//int priority;
+	Date datestr; 
         bool isComplete;
-	string type;
+	vector<Base *> items; 
 public:
-	project();
-	~project();
-	project(string nm, string d, int p);
-        string get_name();
-        void set_name(string n);
-        string get_date();
+	project() : Base() {
+            datestr = "";
+            date = convert_date();
+            isComplete = false;
+        }
+	project(string, int);
+	project(string ,int ,vector<Base * >);
+        
+	Date convert_date(); 
+	string get_date();
         void set_date(string d);
-        //int get_priority();
-        //void set_priority(int p);
-	void proj_type( string t);
-	string get_type();
-  	 bool complete();
-	void mark_as_complete();
-	void mark_as_incomplete();
+
+	void add_task();
+        void add_task(string, string, int);
+	void add_Project(project);
 	
 };
 #endif
