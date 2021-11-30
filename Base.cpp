@@ -51,3 +51,7 @@ Date Base::convert_date(){
         return Date(m,d,y);
     }
 }
+
+Date Base::get_date_obj() {
+    return date;
+}

@@ -12,39 +12,43 @@ using std::vector;
 class task : public Base {
     private:
         string datestr;
-        Date date;
+        //Date date;
         int priority;
         bool isComplete;
         vector<subtask *> subs;                           // returns true if a task has subtasks
                                                         // private helper for mark_as_complete()
     public:
         task() : Base() {
+            this->set_date("");
+            //date = convert_date();
             priority = 0;
             isComplete = false;
         }
 
 
         task(string d, int p) : Base() {
-            datestr = d;
-            date = convert_date();
+            this->set_date(d);
+            //date = convert_date();
             priority = p;
             isComplete = false;
         }
 
         task(string nm, string desc, string d, int p) : Base() { // for making new tasks from main
+            this->set_date(d);
             this->setName(nm);
             this->setDescription(desc);
             datestr = d;
-            date = convert_date();
+            //date = convert_date();
             priority = p;
             isComplete = false;
         }
 
         task(string nm, string desc, string d, int p, bool c) : Base() { // task constructor for file i/o backup purposes
+            this->set_date(d);
             this->setName(nm);
             this->setDescription(desc);
-            datestr = d;
-            date = convert_date();
+            
+            //date = convert_date();
             priority = p;
             isComplete = c;
         }
@@ -52,10 +56,10 @@ class task : public Base {
         ~task();
         bool has_subtasks(); 
         bool complete();                                // returns current state of completion
-        Date convert_date();
-        string get_date();
         vector<subtask*> get_subtasks();
-        void set_date(string d);
+        //Date convert_date();
+        //string get_date();
+        //void set_date(string d);
         int get_priority();
         void set_priority(int p);
         void mark_as_complete();                        // sets current task to complete

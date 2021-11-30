@@ -25,8 +25,8 @@ class Base{
 
         std::string get_date();
         void set_date(std::string d);    //Takes a string of form MM/DD/YYYY -> Date obj and store in class.
-        Date Base::convert_date();
-
+        Date convert_date();
+        Date get_date_obj();
        
 };
 
