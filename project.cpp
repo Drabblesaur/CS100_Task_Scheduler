@@ -16,7 +16,8 @@ project::project(string nm, string d, int p) {
 }
 
 project::~project() {
-    for (size_t i = 0; i < subs.size(); i++) {
+    for (size_p i = 0; i < subs.size(); i++) {
+
         delete subs.at(i);
     }
 }
