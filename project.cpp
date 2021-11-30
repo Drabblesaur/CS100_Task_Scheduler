@@ -22,15 +22,17 @@ void project::set_date(string d) {
 }
 
 Date task::convert_date(){
+if (datestr.size() == 0) {
+        return Date(0,0,0); //if empty
+}
+else{ 
+std::string::size_type sz;   // alias of size_t
+int m = std::stoi(datestr.substr(0,2), &sz);
+        int d = std::stoi(datestr.substr(3,2), &sz);
+        int y = std::stoi(datestr.substr(6,4), &sz);
 
-    std::string::size_type sz; // alias of size_t
-    int m = std::stoi(datestr.substr(0,2), &sz);
-    int d = std::stoi(datestr.substr(3,2), &sz);
-    int y = std::stoi(datestr.substr(6,4), &sz);
-
-    Date dt(m,d,y);
-
-    return dt;
+        return Date(m,d,y);
+    }
 }
 
 void project::add_task(){
