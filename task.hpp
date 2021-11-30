@@ -15,8 +15,7 @@ class task : public Base {
         Date date;
         int priority;
         bool isComplete;
-        vector<subtask *> subs;
-        bool has_subtasks();                            // returns true if a task has subtasks
+        vector<subtask *> subs;                           // returns true if a task has subtasks
                                                         // private helper for mark_as_complete()
     public:
         task() : Base() {
@@ -53,10 +52,11 @@ class task : public Base {
         }
 
         ~task();
-
+        bool has_subtasks(); 
         bool complete();                                // returns current state of completion
         Date convert_date();
         string get_date();
+        vector<subtask*> get_subtasks();
         void set_date(string d);
         int get_priority();
         void set_priority(int p);
