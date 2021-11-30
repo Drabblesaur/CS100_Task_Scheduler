@@ -32,6 +32,7 @@ public:
 	~project();        
 
 	void add_task();
+	bool has_elements();
     void add_task(string s1, string s2, int i);
 	void add_Project(project* p);
 	
