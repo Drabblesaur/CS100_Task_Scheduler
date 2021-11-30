@@ -62,7 +62,7 @@ class task : public Base {
         void set_priority(int p);
         void mark_as_complete();                        // sets current task to complete
         void mark_as_incomplete();                      // sets current task to inomplete
-        void add_subtask();                             // pushes new subtask to subs vector (default)
+        void add_subtask(subtask* sub);                             // pushes new subtask to subs vector (default)
         void add_subtask(string nm, string d, int p);   // pushes new subtask to subs vector (parameterized)
         void complete_subtask(string nm);               // mark a given subtask as complete
         void print_subtasks();                          // take a guess
