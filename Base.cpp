@@ -9,6 +9,7 @@ Base::Base(std::string name, std::string description,std::string date){
     this->name = name;
     this->description = description;
     this->datestr = date;
+    this->date = convert_date();
 }
 Base::~Base(){};
 

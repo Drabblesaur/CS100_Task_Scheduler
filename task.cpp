@@ -56,6 +56,9 @@ void task::mark_as_incomplete() {
     isComplete = false;
 }
 
+vector<subtask*> task::get_subtasks() {
+    return subs;
+}
 void task::add_subtask(subtask* sub) {              // pushes new subtask to subs vector (default)
                                         // instantiate new default subtask
     subs.push_back(sub);

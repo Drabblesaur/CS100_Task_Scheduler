@@ -34,7 +34,9 @@ public:
 	void add_task();
     void add_task(string s1, string s2, int i);
 	void add_Project(project* p);
+	vector<Base*> get_items();
 	
+	void project::add_item(Base* b)
 	void print_project();
 	Base * project::search(string nm);
 	
