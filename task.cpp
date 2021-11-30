@@ -105,3 +105,14 @@ void task::complete_subtask(string nm) {
 bool task::has_subtasks() {                    // returns true if a task has subtasks
     return !subs.empty();                      // if subs.empty() is true, has_subtasks() == false
 }                                              // basically, has_subtasks() is the negation of subs.empty()
+
+void task::print_subtasks() {
+    if (subs.empty()) {
+        std::cout << "Task \"" << this->getName() << "\" has no subtasks." << std::endl;
+    }
+    else {
+        for (size_t i = 0; i < subs.size(); i++) {
+            std::cout << i + 1 << ". " << subs.at(i)->getName() << ": " << subs.at(i)->getDescription() << std::endl;
+        }
+    }
+}
