@@ -12,6 +12,7 @@ class Base{
     
     public:
         Base();
+        Base(std::string name, std::string description);
         ~Base();
         void setName(std::string n);
         void setDescription(std::string d);
