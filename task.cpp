@@ -94,20 +94,9 @@ void task::add_subtask(string nm, string d, int p) { // pushes new subtask to su
 }
 
 void task::complete_subtask(string nm) {
-    subtask *subToComplete = nullptr;
-    bool found = false;
-    for (size_t i = 0; i < subs.size(); i++) {
-        if (subs.at(i)->getName() == nm) {         // if a subtask in subs has the same name as what is passed in, point subToComplete to it
-            subToComplete = subs.at(i);
-            found = true;
-        }
-    }
-    if (!found) {
-        std::cout <<'\"' << this->getName() << "\" has no subtask titled \"" << nm << '\"' << std::endl;
-        return;
-    }
+    subtask *sub = search(nm);
 
-    subToComplete->mark_as_complete();
+    sub->mark_as_complete();
 }
 
 bool task::has_subtasks() {                    // returns true if a task has subtasks
@@ -123,4 +112,22 @@ void task::print_subtasks() {
             std::cout << i + 1 << ". " << subs.at(i)->getName() << std::endl;
         }
     }
+}
+
+subtask * task::search(string nm) {
+    subtask *sub = nullptr;
+    bool found;
+    for (size_t i = 0; i < subs.size(); i++) {
+        if (subs.at(i)->getName() == nm) {         // if a subtask in subs has the same name as what is passed in, point subToComplete to it
+            sub = subs.at(i);
+            found = true;
+        }
+    }
+
+    if (!found) {
+        std::cout <<'\"' << this->getName() << "\" has no subtask titled \"" << nm << '\"' << std::endl;
+        return nullptr;
+    }
+    
+    return sub;
 }

@@ -33,7 +33,7 @@ class task : public Base {
             priority = p;
             isComplete = false;
         }
-        
+
         ~task();
 
         bool complete();                                // returns current state of completion
@@ -48,6 +48,7 @@ class task : public Base {
         void add_subtask(string nm, string d, int p);   // pushes new subtask to subs vector (parameterized)
         void complete_subtask(string nm);               // mark a given subtask as complete
         void print_subtasks();                          // take a guess
+        subtask * search(string nm);
 };
 
 #endif
