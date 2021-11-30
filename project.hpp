@@ -22,16 +22,25 @@ public:
             date = convert_date();
             isComplete = false;
         }
-	project(string, int);
-	project(string ,int ,vector<Base * >);
+	project(string d) : Base(){
+	    datestr = d;
+	    isComplete = false;
+	}
+	project(string d,vector<Base *z>){
+	    datestr = d;
+	    date = convert_date();
+	    isComplete = false;
+	    vector<Base *z> = ;
+	}
         
 	Date convert_date(); 
 	string get_date();
         void set_date(string d);
-
+	
 	void add_task();
         void add_task(string, string, int);
 	void add_Project(project);
+	
 	void print_project();
 	
 };
