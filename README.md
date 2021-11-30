@@ -28,7 +28,7 @@ Create Detailed Tasks
 - Edit and Delete Tasks.
 
 ## Class Diagram
-![Class Diagram](https://github.com/cs100/final-project-jto015-nlin039-abenn031-lgonz173/blob/master/Images/CS100Diagram.PNG?raw=true)
+![Class Diagram](https://github.com/cs100/final-project-jto015-nlin039-abenn031-lgonz173/blob/master/Images/New%20UML.png?raw=true)
 This Class Diagram Implements 2 Design Patterns. The first design pattern is the Composite Design Pattern. This is implemented in the construction of the Project and the Tasks class being subclasses to the Abstract Class Base(Name TBD). Next is the Factory Design Pattern. This is a pseudo Abstract design pattern. (We may or may not need the abstractFactory to be implemeted) But with the Factories such as TaskFactory and ProjectFatory, the client can create these objects much faster.
  
  > ## Phase III
