@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <algorithm>
 
 using namespace std;
 
@@ -21,6 +22,17 @@ vector <subtask *>subt;
 vector <task *>tasks; 
 char option;
 char s[80];
+
+void viewIncTask();
+void viewProject();
+void PromptTask();
+void viewTodayTask();
+void viewDateTask();
+void viewPriorityTask();
+void viewComTask();
+void viewIncTask();
+void viewDateTask();
+void showSubtasks(task *t);
 
 bool compare(task* t1,task*t2){
     if(t1->get_date_obj().getYear() < t2->get_date_obj().getYear())
@@ -162,7 +174,7 @@ Base* makeProjectComplete(){
             viewProject();
         }
         else if (op2 == 'N' || op2 =='n'){
-            return;
+            return nullptr;
         }
         else{
             cout << "INVALID RESPONSE" << endl;
