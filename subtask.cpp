@@ -18,10 +18,15 @@ void subtask::set_date(string d) { //Takes a string of form MM/DD/YYYY -> Date o
 }
 
 Date subtask::convert_date(){
-    int d = std::stoi(datestr.substr(0,2));
-    int m = std::stoi(datestr.substr(3,3));
-    int y = std::stoi(datestr.substr(7,4));
-    return Date(d,m,y);
+    std::string::size_type sz;   // alias of size_t
+
+    int m = std::stoi(datestr.substr(0,2), &sz);
+    int d = std::stoi(datestr.substr(3,2), &sz);
+    int y = std::stoi(datestr.substr(6,4), &sz);
+
+    Date dt(m,d,y);
+
+    return dt;
 }
 
 int subtask::get_priority() {

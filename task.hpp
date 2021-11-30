@@ -26,7 +26,6 @@ class task : public Base {
             isComplete = false;
         }
 
-        ~task();
 
         task(string d, int p) : Base() {
             datestr = d;
@@ -34,6 +33,8 @@ class task : public Base {
             priority = p;
             isComplete = false;
         }
+        
+        ~task();
 
         bool complete();                                // returns current state of completion
         Date convert_date();

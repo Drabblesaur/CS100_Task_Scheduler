@@ -7,9 +7,12 @@ class Date{
         int month;
         int year;
     public:
-        Date(int d, int m, int y){
-            day = d;
+        Date() {
+            month = day = year = 0;
+        }
+        Date(int m, int d, int y){
             month = m;
+            day = d;
             year = y;
         }
         void setDay(int d){
@@ -31,8 +34,8 @@ class Date{
             return year;
         }
         std::string toString(){
-            return std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
-        };
+            return std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year);
+        }
         
 };
 #endif
