@@ -10,12 +10,16 @@ class SubtaskFactory : public BaseFactory
         subtask* createSubtask(std::string name, std::string description, std::string date,int priority, bool isComplete){
             return new subtask(name, description, priority, date, isComplete);
         }
-        Base* modifyName(Base* task, Base* subtask, std::string name){
+        void modifyName( subtask* subtask, std::string name){
+            subtask->setName(name);
         }
-        Base* modifyDescription(Base* task, Base* base, std::string description){
+        void modifyDescription( subtask* subtask, std::string description){
+            subtask->setDescription(description);
         }
-        Base* modifyPriority(Base* task, Base* base, int priority){
+        void modifyPriority( subtask* subtask, int priority){
+            subtask->set_priority(priority);
         }
-        Base* modifyDate(Base* task, Base* base, std::string date){
+        void modifyDate( subtask* subtask, std::string date){
+            subtask->set_date(date);
         }
 };

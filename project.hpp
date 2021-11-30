@@ -12,43 +12,31 @@ using std::vector;
 
 class project:public Base{
 private:
-        string date;
-	Date datestr; 
-        bool isComplete;
+    bool isComplete;
 	vector<Base *> items; 
+
 public:
 	project() : Base() {
-            datestr = "";
-            date = convert_date();
-	    priority = p;
             isComplete = false;
         }
 	project(string d, int p) : Base(){
-	    datestr = d;
-	    date = convert_date();
-	    priority = p;
+		this->set_date(d);
 	    isComplete = false;
 	}
-	project(string d,int p,vector<Base *>v){
-	    datestr = d;
-	    date = convert_date();
-	    priority = p;
+	project(string d,int p,vector<Base *>v) : Base(){
+	    this->set_date(d);
 	    isComplete = false;
 	    items =v ;
 	}
 	
 	~project();        
 
-	Date convert_date(); 
-	string get_date();
-        void set_date(string d);
-	
 	void add_task();
-        void add_task(string, string, int);
-	void add_Project(project);
+    void add_task(string s1, string s2, int i);
+	void add_Project(project* p);
 	
 	void print_project();
-	project * search(string nm);
+	Base * project::search(string nm);
 	
 };
 #endif

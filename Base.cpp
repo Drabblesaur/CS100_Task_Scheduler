@@ -2,10 +2,14 @@
 Base::Base(){
     name = "";
     description = "";
+    datestr = "";
+    date = convert_date();
 }
-Base::Base(std::string name, std::string description){
+Base::Base(std::string name, std::string description,std::string date){
     this->name = name;
     this->description = description;
+    this->datestr = date;
+    this->date = convert_date();
 }
 Base::~Base(){};
 
@@ -23,39 +27,27 @@ std::string Base::getDescription(){
     return description;
 };
 
-//NOT DELETING THIS CODE FOR NOW MAY BE USEFUL FOR YOU GUYS LATER
-/*
-int Base::addTask(Base* t){
-    tasksList.push_back(t);
-}
-
-int Base::removeTask(Base* t){
-    for(int i = 0; i < tasksList.size(); i++){
-        if(tasksList[i] == t){
-            tasksList.erase(tasksList.begin() + i);
-            return 0;
+std::string Base::get_date() { 
+            if (datestr == "") {
+                return " ";
+            }       
+            else
+                return datestr;
         }
+void Base::set_date(std::string d){
+    this->datestr = d;
+}
+Date Base::convert_date(){
+    if (datestr.size() == 0) {
+        return Date(0,0,0);          // if datestr is empty, return 0/0/0
     }
-    return -1;
-}
-int Base::editTaskName(Base* t, std::string name){
-    Base task = getTask(t);
-    task.setName(name);
-}
-int Base::editTaskDescription(Base* t, std::string description){
-    Base task = getTask(t);
-    task.setDescription(description);
-}
+    else {
+        std::string::size_type sz;   // alias of size_t
 
-Base Base::getTask(Base* t){
-    for(int i = 0; i < tasksList.size(); i++){
-        if(tasksList[i] == t){
-            return *tasksList[i];
-        }
+        int m = std::stoi(datestr.substr(0,2), &sz);
+        int d = std::stoi(datestr.substr(3,2), &sz);
+        int y = std::stoi(datestr.substr(6,4), &sz);
+
+        return Date(m,d,y);
     }
-    return Base();
 }
-vector<Base *> Base::getTaskList(){
-    return tasksList;
-}
-*/

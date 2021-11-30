@@ -120,11 +120,12 @@ public:
         std::ofstream outFS;
         outFS.open(fileName);
         outFS << subtaskList.size() << std::endl;
+        
         for(int i =0; i<subtaskList.size(); i++){
             outFS << subtaskList[i]->getName() << std::endl;
             outFS << subtaskList[i]->getDescription() << std::endl;
             outFS << subtaskList[i]->getPriority() << std::endl;
-            outFS << subtaskList[i]->getDate() << std::endl;
+            outFS << subtaskList[i]->get_date() << std::endl;
             outFS << subtaskList[i]->getComplete() << std::endl;
         }
     }
