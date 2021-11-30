@@ -1,8 +1,7 @@
-#include "BaseFactory.cpp"
+
 #include "task.hpp"
 
-class TaskFactory : public BaseFactory
-{
+class TaskFactory{
     public:
         TaskFactory();
         ~TaskFactory();

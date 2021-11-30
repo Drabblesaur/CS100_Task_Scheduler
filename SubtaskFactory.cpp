@@ -1,8 +1,8 @@
-#include "BaseFactory.cpp"
+
 #include "subtask.hpp"
 #include "subtask.cpp"
 
-class SubtaskFactory : public BaseFactory
+class SubtaskFactory
 {
     public:
         SubtaskFactory();

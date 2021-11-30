@@ -1,6 +1,6 @@
-#include "BaseFactory.cpp"
+
 #include "project.hpp"
-class ProjectFactory : public BaseFactory
+class ProjectFactory
 {
     public:
         ProjectFactory();

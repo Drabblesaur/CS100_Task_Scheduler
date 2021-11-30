@@ -20,8 +20,6 @@ class task : public Base {
                                                         // private helper for mark_as_complete()
     public:
         task() : Base() {
-            datestr = "";
-            date = convert_date();
             priority = 0;
             isComplete = false;
         }
