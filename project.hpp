@@ -48,6 +48,7 @@ public:
 	void add_Project(project);
 	
 	void print_project();
+	project * search(string nm);
 	
 };
 #endif

@@ -61,3 +61,20 @@ std::cout<< i+1<<". "<<items.at(i)->getName()<<": "<< items.at(i)->getDescriptio
 }
 }
 }
+
+Base * project::search(string nm) {
+    project *proj = nullptr;
+    bool found;
+    for (size_t i = 0; i < subs.size(); i++) {
+        if (items.at(i)->getName() == nm) {
+	proj = items.at(i);
+	found = true;
+}
+}
+if (!found){
+std::cout <<'\"' << this->getName() << "\" has no project titled \"" << nm << '\"' << std::endl;
+        return nullptr;
+    }
+    
+    return proj;
+}
