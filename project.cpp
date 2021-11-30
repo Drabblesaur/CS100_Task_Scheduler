@@ -16,7 +16,7 @@ project::project(string nm, string d, int p) {
 }
 
 project::~project() {
-    for (size_p i = 0; i < subs.size(); i++) {
+    for (size_pr i = 0; i < subs.size(); i++) {
 
         delete subs.at(i);
     }
@@ -60,7 +60,7 @@ if (proj.empty()){
 std::cout << "Proj \""<<this -> getName()<<"\" has no projects."<<std::endl;
 }
 else{
-	for(size_p i=0; i<proj.size(); i++){
+	for(size_pr i=0; i<proj.size(); i++){
 std::cout<< i+1<<". "<<proj.at(i)->getName()<<": "<< proj.at(i)->getDescription<<std::endl;
 }
 }
