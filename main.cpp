@@ -26,7 +26,7 @@ cout << "E - Mark Project As Completed"<<endl;
 cout << "F - View Tasks"<<endl;
 cout << "G - View Projects"<<endl;
 }
-
+// for making new tasks
 Base* usertask(){
 string name;
 string date; 
@@ -48,7 +48,7 @@ cin >> priority;
 Base* Task = new task(name, description, date, priority);
 return Task;  
 }
-
+//for making new projects
 Base* userProj(){
 string name; 
 string description;
