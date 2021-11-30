@@ -5,8 +5,8 @@ class TaskFactory{
     public:
         TaskFactory();
         ~TaskFactory();
-        Base* create(std::string name, std::string description, std::string date, int priority){
-            Base * newTask = new task();
+        task* create(std::string name, std::string description, std::string date, int priority){
+            task* newTask = new task();
             newTask->set_date(date);
             newTask->setName(name);
             newTask->setDescription(description);

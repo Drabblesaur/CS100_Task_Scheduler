@@ -5,8 +5,8 @@ class ProjectFactory
     public:
         ProjectFactory();
         ~ProjectFactory();
-        Base* create(std::string name, std::string description,std::string date){
-            Base * newProject = new project();
+        project* create(std::string name, std::string description,std::string date){
+            project * newProject = new project();
             newProject->setName(name);
             newProject->setDescription(description);
             newProject->set_date(date);

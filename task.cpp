@@ -48,6 +48,7 @@ void task::mark_as_complete() {         // sets current task to complete
         if (hasIncompleteSubs) {
             return;
         }
+        std::cout << "Task Completed"<< std::endl;
         isComplete = true; // if this point is reached, no subtasks are incomplete, so the task can be completed
     }
 }

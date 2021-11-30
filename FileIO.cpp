@@ -36,9 +36,10 @@ public:
             inFS >> priority;
             std::getline(inFS, date);
             inFS >> complete;
-            Base* newBase = new task(name, descript, priority, date, complete);
-            taskList.push_back(newBase)
+            Base* newBase = new task(name, descript, date, priority, complete); 
+            taskList.push_back(newBase);
         }
+        inFS.close();
     }
     void readProject(string fileName){
         std::ifstream inFS;
@@ -59,13 +60,11 @@ public:
             std::getline(inFS,descript);
             std::getline(inFS, date);
             inFS >> complete;
-            Base* newBase = new project(name, descript, date, complete);
+            Base* newBase = new project(name, descript, date, complete); //FIX PROJ
             projectList.push_back(newBase);
 
         }
-
-
-
+        inFS.close();
     }
     void readSub(string fileName){
         std::ifstream inFS;
@@ -92,6 +91,7 @@ public:
             Base* newBase = new subtask(name, descript, priority, date, complete);
             subList.push_back(newBase);
         }
+        inFS.close();
     }
     void readTaskRelations(string filename, vector<task*> taskList, vector<subtask*>sublist){
         std::ifstream inFS;
@@ -113,7 +113,7 @@ public:
             std::getline(inFS, TaskName);
             //search for task using name
             for(int j=0; j<taskList.size(); j++){
-                if(taskList[j]->get_name() == TaskName){
+                if(taskList[j]->getName() == TaskName){
                     taskPtr = taskList[j];
                 }
             }
@@ -130,8 +130,7 @@ public:
             }
 
         }
-
-
+        inFS.close();
     }
     void readProjectRelations(string filename, vector<project*> projectList, vector<task*> taskList){
         std::ifstream inFS;
@@ -163,13 +162,14 @@ public:
                     }
                 }
                 for(int m=0; m<projectList.size(); m++){
-                if(projectList[j]->getName() == projectName){
-                    itemptr = projectList[j];
+                if(projectList[m]->getName() == projectName){
+                    itemptr = projectList[m];
                 }
                 }
                 projectPtr->add_item(itemptr);
             }
         }
+        inFS.close();
     }
 
 
@@ -184,6 +184,7 @@ public:
             outFS << taskList[i]->get_date() << std::endl;
             outFS << taskList[i]->complete() << std::endl;
         }
+        outFS.close();
     }
     void writeProject(string fileName,vector<project*> projList){
          std::ofstream outFS;
@@ -194,6 +195,7 @@ public:
             outFS << projList[i]->getDescription() << std::endl;
             outFS << projList[i]->get_date() << std::endl;
         }
+        outFS.close();
     }
     void writeSub(string fileName,vector<subtask*> subtaskList){
         std::ofstream outFS;
@@ -206,6 +208,7 @@ public:
             outFS << subtaskList[i]->get_date() << std::endl;
             outFS << subtaskList[i]->complete() << std::endl;
         }
+        outFS.close();
     }
     void writeTaskRelations(string fileName,vector<task*> taskList){
         std::ofstream outFS;
@@ -221,6 +224,7 @@ public:
                 }
             }
         }
+        outFS.close();
     }
     void writeProjectRelations(string fileName,vector<project*> projList){
         std::ofstream outFS;
@@ -238,6 +242,6 @@ public:
                 outFS << 0 << std::endl;
             }
         }
-        
+        outFS.close();
     }
 };

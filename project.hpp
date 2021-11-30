@@ -28,6 +28,12 @@ public:
 	    isComplete = false;
 	    items =v ;
 	}
+	project(string n,string de,string d,bool c): Base(){
+		this->setName(n);
+		this->setDescription(de);
+		this->set_date(d);
+		isComplete = c;
+	}
 	
 	~project();        
 
@@ -37,7 +43,7 @@ public:
 	void add_Project(project* p);
 	vector<Base*> get_items();
 	
-	void project::add_item(Base* b)
+	void project::add_item(Base* b);
 	void print_project();
 	Base * search(string nm);
 	
