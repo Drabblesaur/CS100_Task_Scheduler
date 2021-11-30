@@ -206,7 +206,7 @@ void viewTaskMenu(){
 void promptTaskView(){
     char op5;
     viewTaskMenu();
-    getline(cin, op5);
+    cin >> op5;
     if (op5 =='A' || op5 == 'a'){
             viewTodayTask();
         }
