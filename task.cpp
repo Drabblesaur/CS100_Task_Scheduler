@@ -2,34 +2,12 @@
 #include <iostream>
 #include <ctime>
 #include <string>
-#include 
-
-task::task() {
-    name = "";
-    string date = "";
-    priority = 0;
-    isComplete = false;
-}
-
-task::task(string nm, Date d, int p) {
-    name = nm;
-    date = d;
-    priority = p;
-    isComplete = false;
-}
+#include "subtask.hpp"
 
 task::~task() {
     for (size_t i = 0; i < subs.size(); i++) {
         delete subs.at(i);
     }
-}
-
-string task::get_name() {
-    return name;
-}
-
-void task::set_name(string n) {
-    name = n;
 }
 
 string task::get_date() { 
@@ -45,10 +23,18 @@ void task::set_date(string d) { //Takes a string of form MM/DD/YYYY -> Date obj 
 }
 
 Date task::convert_date(){
-    int d = std::stoi(datestr.substr(0,2));
-    int m = std::stoi(datestr.substr(3,3));
-    int y = std::stoi(datestr.substr(7,4));
-    return Date(d,m,y);
+    if (datestr.size() == 0) {
+        return Date(0,0,0);          // if datestr is empty, return 0/0/0
+    }
+    else {
+        std::string::size_type sz;   // alias of size_t
+
+        int m = std::stoi(datestr.substr(0,2), &sz);
+        int d = std::stoi(datestr.substr(3,2), &sz);
+        int y = std::stoi(datestr.substr(6,4), &sz);
+
+        return Date(m,d,y);
+    }
 }
 
 int task::get_priority() {
@@ -80,7 +66,7 @@ void task::mark_as_complete() {         // sets current task to complete
         bool hasIncompleteSubs = false;
         for (size_t i = 0; i < subs.size(); i++) { // check each subtasks, if any one of them is incomplete,
             if (!(subs.at(i)->complete())) {        // main task can not be marked as complete, so abort
-                std::cout << "subtask \"" << subs.at(i)->get_name() << "\" must be completed before \"" << this->get_name() << "\" can be completed." << std::endl;
+                std::cout << "subtask \"" << subs.at(i)->getName() << "\" must be completed before \"" << this->getName() << "\" can be completed." << std::endl;
                 isComplete = false;                // should be defaulted to false but better safe
                 hasIncompleteSubs = true;
             }
@@ -97,35 +83,51 @@ void task::mark_as_incomplete() {
 }
 
 void task::add_subtask() {              // pushes new subtask to subs vector (default)
-    task *subtask = new task();      // instantiate new default subtask
-    subs.push_back(subtask);
+    subtask *newSub = new subtask();      // instantiate new default subtask
+    subs.push_back(newSub);
 }
 
 void task::add_subtask(string nm, string d, int p) { // pushes new subtask to subs vector (parameterized)
-    task *subtask = new task(nm, d, p);
-    subs.push_back(subtask);
+    subtask *newSub = new subtask(d, p);
+    newSub->setName(nm);
+    subs.push_back(newSub);
 }
 
 void task::complete_subtask(string nm) {
-    task *subToComplete = nullptr;
-    bool found = false;
-    for (size_t i = 0; i < subs.size(); i++) {
-        if (subs.at(i)->get_name() == nm) {         // if a subtask in subs has the same name as what is passed in, point subToComplete to it
-            subToComplete = subs.at(i);
-            found = true;
-        }
-    }
-    if (!found) {
-        std::cout <<'\"' << this->get_name() << "\" has no subtask titled \"" << nm << '\"' << std::endl;
-        return;
-    }
+    subtask *sub = search(nm);
 
-    subToComplete->mark_as_complete();
+    sub->mark_as_complete();
 }
 
 bool task::has_subtasks() {                    // returns true if a task has subtasks
-    if (!subs.empty()) { // if subs vector isn't empty, there are subtasks. return true
-        return true;
+    return !subs.empty();                      // if subs.empty() is true, has_subtasks() == false
+}                                              // basically, has_subtasks() is the negation of subs.empty()
+
+void task::print_subtasks() {
+    if (subs.empty()) {
+        std::cout << "Task \"" << this->getName() << "\" has no subtasks." << std::endl;
     }
-    return false;
+    else {
+        for (size_t i = 0; i < subs.size(); i++) {
+            std::cout << i + 1 << ". " << subs.at(i)->getName() << std::endl;
+        }
+    }
+}
+
+subtask * task::search(string nm) {
+    subtask *sub = nullptr;
+    bool found;
+    for (size_t i = 0; i < subs.size(); i++) {
+        if (subs.at(i)->getName() == nm) {         // if a subtask in subs has the same name as what is passed in, point subToComplete to it
+            sub = subs.at(i);
+            found = true;
+        }
+    }
+
+    if (!found) {
+        std::cout <<'\"' << this->getName() << "\" has no subtask titled \"" << nm << '\"' << std::endl;
+        return nullptr;
+    }
+
+    return sub;
 }
