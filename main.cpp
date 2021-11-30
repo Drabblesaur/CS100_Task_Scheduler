@@ -61,13 +61,16 @@ task* usertask(){
  
     cout << " Enter name of task: " << endl;
     getline(cin, name);
-
+    cin.clear();
+    cin.ignore(10000, '\n');
     cout << " Enter task descrition: " << endl;
     getline(cin, description);
-
+    cin.clear();
+    cin.ignore(10000, '\n');
     cout << " Enter task due date (Please enter in Month/Day/Year format): " << endl;
     getline(cin, date);
-
+    cin.clear();
+    cin.ignore(10000, '\n');
     cout << " Enter the level of task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
     cin >> priority; 
 
@@ -88,13 +91,17 @@ Base* userSubTask(){
 
     cout << " Enter name of sub-task: " << endl; 
     getline(cin, name);
+    cin.clear();
+    cin.ignore(10000, '\n');
 
     cout << " Enter sub-task descrition: " << endl;
     getline(cin, description);
-
+    cin.clear();
+    cin.ignore(10000, '\n');
     cout << " Enter sub-task due date (Please enter in Month/Day/Year format): " << endl;
     getline(cin, date);
-
+    cin.clear();
+    cin.ignore(10000, '\n');
     cout << " Enter the level of sub-task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
     cin >> priority; 
 
@@ -111,13 +118,16 @@ Base* userProject(){
     
     cout << " Enter name of project: " << endl;
     getline(cin, name);
-
+    cin.clear();
+    cin.ignore(10000, '\n');
     cout << " Enter project descrition: " << endl;
     getline(cin, description);
-
+    cin.clear();
+    cin.ignore(10000, '\n');
     cout << " Enter project due date (Please enter in Month/Day/Year format): " << endl; 
     getline(cin, date);
-
+    cin.clear();
+    cin.ignore(10000, '\n');
     project* newProject = ffactory->create(name, description, date);
     proj.push_back(newProject);
 } 
@@ -127,7 +137,10 @@ Base* markTaskComplete(){
     string taskName = "";
     viewIncTask();
     cout << "Please type the name of the task you wish to mark complete" << endl;
-    cin >> taskName;
+    getline(cin, taskName);
+    cin.clear();
+    cin.ignore(10000, '\n');
+
     for(int i=0; i<tasks.size(); i++){
         if(tasks[i]->getName() == taskName){
             task = tasks[i];
@@ -341,7 +354,10 @@ void PromptTask(){
     string taskName = "";
     viewIncTask();
     cout << "Please type the name of the task you wish to select." << endl;
-    cin >> taskName;
+    getline(cin, taskName);
+    cin.clear();
+    cin.ignore(10000, '\n');
+
     for(int i=0; i<tasks.size(); i++){
         if(tasks[i]->getName() == taskName){
             task = tasks[i];
@@ -387,7 +403,10 @@ void establishConnection(task* newtask){
     string projectName= "";
     viewProject();
     cout << "select the project you wish to add this task"<< endl;
-    cin >> projectName;
+    getline(cin, projectName);
+    cin.clear();
+    cin.ignore(10000, '\n');
+
     for(int i=0; i<proj.size(); i++){
         if(proj[i]->getName() == projectName){
             Addedproj = proj[i];
