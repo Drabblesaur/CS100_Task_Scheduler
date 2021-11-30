@@ -20,20 +20,25 @@ public:
 	project() : Base() {
             datestr = "";
             date = convert_date();
+	    priority = p;
             isComplete = false;
         }
-	project(string d) : Base(){
+	project(string d, int p) : Base(){
 	    datestr = d;
 	    date = convert_date();
+	    priority = p;
 	    isComplete = false;
 	}
-	project(string d,vector<Base *>v){
+	project(string d,int p,vector<Base *>v){
 	    datestr = d;
 	    date = convert_date();
+	    priority = p;
 	    isComplete = false;
 	    items =v ;
 	}
-        
+	
+	~project();        
+
 	Date convert_date(); 
 	string get_date();
         void set_date(string d);
