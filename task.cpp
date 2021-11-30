@@ -128,6 +128,6 @@ subtask * task::search(string nm) {
         std::cout <<'\"' << this->getName() << "\" has no subtask titled \"" << nm << '\"' << std::endl;
         return nullptr;
     }
-    
+
     return sub;
 }

@@ -29,6 +29,15 @@ class subtask : public Base {
             isComplete = false;
         }
 
+        subtask(string nm, string desc, int p, string d, bool c) : Base() { // subtask constructor for file i/o backup purposes
+            this->setName(nm);
+            this->setDescription(desc);
+            datestr = d;
+            date = convert_date();
+            priority = p;
+            isComplete = c;
+        }
+
         bool complete();
         string get_date();
         Date convert_date();
