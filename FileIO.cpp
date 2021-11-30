@@ -105,6 +105,38 @@ public:
             outFS << taskList[i]->getComplete() << std::endl;
         }
     }
-    void writeProject(string fileName,vector<Base*> projList)
-    void writeSub(string fileName,vector<Base*> subtaskList)
+    void writeProject(string fileName,vector<Base*> projList){
+         std::ofstream outFS;
+        outFS.open(fileName);
+        outFS << projList.size() << std::endl;
+        for(int i =0; i<projList.size(); i++){
+            outFS << projList[i]->getName() << std::endl;
+            outFS << projList[i]->getDescription() << std::endl;
+            outFS << projList[i]->getDate() << std::endl;
+            outFS << projList[i]->getComplete() << std::endl;
+        }
+    }
+    void writeSub(string fileName,vector<Base*> subtaskList){
+        std::ofstream outFS;
+        outFS.open(fileName);
+        outFS << subtaskList.size() << std::endl;
+        for(int i =0; i<subtaskList.size(); i++){
+            outFS << subtaskList[i]->getName() << std::endl;
+            outFS << subtaskList[i]->getDescription() << std::endl;
+            outFS << subtaskList[i]->getPriority() << std::endl;
+            outFS << subtaskList[i]->getDate() << std::endl;
+            outFS << subtaskList[i]->getComplete() << std::endl;
+        }
+    }
+    void writeTaskRelations(string fileName,vector<Base*> taskList){
+        std::ofstream outFS;
+        outFS.open(fileName);
+        outFS << taskList.size() << std::endl;
+        for(int i =0; i<taskList.size(); i++){
+            if(taskList[i]->hasSubtasks()){
+                
+            }
+        }
+    }
+    void writeProjectRelations(string fileName,vector<Base*> projList)
 };

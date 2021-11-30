@@ -12,7 +12,7 @@ using namespace std;
 
 vector <Base *>proj;
 vector <Base *>subt;
-vector <base *>tasks; 
+vector <Base *>tasks; 
 char option; 
 
 

@@ -82,9 +82,9 @@ void task::mark_as_incomplete() {
     isComplete = false;
 }
 
-void task::add_subtask() {              // pushes new subtask to subs vector (default)
-    subtask *newSub = new subtask();      // instantiate new default subtask
-    subs.push_back(newSub);
+void task::add_subtask(subtask* sub) {              // pushes new subtask to subs vector (default)
+                                        // instantiate new default subtask
+    subs.push_back(sub);
 }
 
 void task::add_subtask(string nm, string d, int p) { // pushes new subtask to subs vector (parameterized)
