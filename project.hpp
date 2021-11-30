@@ -37,7 +37,7 @@ public:
 	void add_Project(project* p);
 	
 	void print_project();
-	Base * project::search(string nm);
+	Base * search(string nm);
 	
 };
 #endif
