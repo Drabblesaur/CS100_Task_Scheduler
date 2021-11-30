@@ -24,13 +24,14 @@ public:
         }
 	project(string d) : Base(){
 	    datestr = d;
+	    date = convert_date();
 	    isComplete = false;
 	}
-	project(string d,vector<Base *z>){
+	project(string d,vector<Base *>v){
 	    datestr = d;
 	    date = convert_date();
 	    isComplete = false;
-	    vector<Base *z> = ;
+	    items =v ;
 	}
         
 	Date convert_date(); 
