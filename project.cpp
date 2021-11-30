@@ -9,32 +9,6 @@ for (size_t i = 0; i < items.size(); i++) {
     }
 }
 
-string project::get_date() {
-    if (datestr == "") {
-        return " ";
-    }
-    else
-        return datestr;
-}
-
-void project::set_date(string d) {
-    datestr = d;
-}
-
-Date task::convert_date(){
-if (datestr.size() == 0) {
-        return Date(0,0,0); //if empty
-}
-else{ 
-std::string::size_type sz;   // alias of size_t
-int m = std::stoi(datestr.substr(0,2), &sz);
-        int d = std::stoi(datestr.substr(3,2), &sz);
-        int y = std::stoi(datestr.substr(6,4), &sz);
-
-        return Date(m,d,y);
-    }
-}
-
 void project::add_task(){
 	task *newTask = new task();
 	items.push_back(newTask);

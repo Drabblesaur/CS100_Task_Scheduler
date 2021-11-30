@@ -8,26 +8,26 @@ class TaskFactory : public BaseFactory
         ~TaskFactory();
         Base* create(std::string name, std::string description, std::string date, int priority){
             Base * newTask = new task();
-            newTask.setName(name);
-            newTask.setDescription(description);
-
+            newTask->set_date(date);
+            newTask->setName(name);
+            newTask->setDescription(description);
             return newTask;
         }
 
-        Base* modifyName(Base* base, std::string name){
-            Base * base.setName(name);
+        Base* modifyName(task* base, std::string name){
+            base->setName(name);
             return base;   
         }
-        Base* modifyDescription(Base* base, std::string description){
-            Base * base.setDescription(description);
+        Base* modifyDescription(task* base, std::string description){
+            base->setDescription(description);
             return base;
         }
-        Base* modifyPriority(Base* base, int priority){
-            Base * base.setPriority(priortiy);
+        Base* modifyPriority(task* base, int priority){
+            base->set_priority(priority);
             return base; 
         }
         Base* modifyDate(Base* base, std::string date){
-            Base * base.setDate(date);
+            base->set_date(date);
             return base;
         }
 };
