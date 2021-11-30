@@ -4,17 +4,10 @@ class ProjectFactory : public BaseFactory
     public:
         ProjectFactory();
         ~ProjectFactory();
-        Base* create(): BaseFactory::create(){
-            //prompt user for project name
-
-            //prompt user for project description
-
+        Base* create(String name, String description){
         }
-        Base* modify(){
-            //prompt user for project name
-
-            //prompt user for project description
-
-
+        Base* modifyName(Base* base, String name){
+        }
+        Base* modifyDescription(Base* base, String description){
         }
 };

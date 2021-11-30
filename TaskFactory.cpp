@@ -4,24 +4,14 @@ class TaskFactory : public BaseFactory
     public:
         TaskFactory();
         ~TaskFactory();
-        Base* create(){
-            //prompt user for task name
-
-            //prompt user for task description
-
-            //prompt user for task priority
-
-            //prompt user for task due date
-
+        Base* create(String name, String description,String date, int priority){
         }
-        Base* modify(){
-            //prompt user for task name
-
-            //prompt user for task description
-
-            //prompt user for task priority
-
-            //prompt user for task due date
-
+        Base* modifyName(Base* base, String name){
+        }
+        Base* modifyDescription(Base* base, String description){
+        }
+        Base* modifyPriority(Base* base, int priority){
+        }
+        Base* modifyDate(Base* base, String date){
         }
 };
