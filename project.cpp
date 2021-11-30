@@ -38,7 +38,7 @@ void project::set_date(string d) {
 }
 
 bool task::complete() {    // returns current state of completion
-    if (!has_subtasks()) { // if task has no subs, return state of current task
+    if (!has_subproj()) { // if task has no subs, return state of current task
         return isComplete;
     }
     for (unsigned i = 0; i < subs.size(); i++) {
@@ -54,10 +54,13 @@ void task::mark_as_incomplete() {
     isComplete = false;
 }
 
-/*int project::get_priority() {
-    return priority;
+void project::print_project(){
+if (proj.empty()){
+std::cout << "Proj \""<<this -> getName()<<"\" has no projects."<<std::endl;
 }
-
-void project::set_priority(int p) {
-    priority = p;
-}*/
+else{
+	for(size_p i=0; i<proj.size(); i++){
+std::cout<< i+1<<". "<<proj.at(i)->getName()<<": "<< proj.at(i)->getDescription<<std::endl;
+}
+}
+}

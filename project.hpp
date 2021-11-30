@@ -32,6 +32,7 @@ public:
 	void add_task();
         void add_task(string, string, int);
 	void add_Project(project);
+	void print_project();
 	
 };
 #endif
