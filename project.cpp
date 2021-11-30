@@ -9,11 +9,13 @@ for (size_t i = 0; i < items.size(); i++) {
     }
 }
 
+void project::add_item(Base* b){
+    items.push_back(b);
+}
 void project::add_task(){
 	task *newTask = new task();
 	items.push_back(newTask);
 }
-
 void project::add_task(string nm, string d, int p) {
   task *newTask = new task(d, p);
   newTask->setName(nm);
@@ -41,18 +43,21 @@ Base * project::search(string nm) {
     bool found;
     for (size_t i = 0; i < items.size(); i++) {
         if (items.at(i)->getName() == nm) {
-	proj = items.at(i);
-	found = true;
-}
-}
-if (!found){
-std::cout <<'\"' << this->getName() << "\" has no project titled \"" << nm << '\"' << std::endl;
+	        proj = items.at(i);
+	        found = true;
+        }
+    }
+    if (!found){
+        std::cout <<'\"' << this->getName() << "\" has no project titled \"" << nm << '\"' << std::endl;
         return nullptr;
     }
     
     return proj;
 }
 
+vector<Base*> project::get_items() {
+    return items;
+}
 bool project::has_elements() {
   return !items.empty();
 }
