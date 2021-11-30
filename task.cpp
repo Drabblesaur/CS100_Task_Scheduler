@@ -90,7 +90,7 @@ void task::print_subtasks() {
 
 subtask * task::search(string nm) {
     subtask *sub = nullptr;
-    bool found;
+    bool found = false;
     for (size_t i = 0; i < subs.size(); i++) {
         if (subs.at(i)->getName() == nm) {         // if a subtask in subs has the same name as what is passed in, point subToComplete to it
             sub = subs.at(i);

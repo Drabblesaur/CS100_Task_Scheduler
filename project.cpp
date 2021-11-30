@@ -20,8 +20,8 @@ void project::add_task(string nm, string d, int p) {
   items.push_back(newTask);
 }
 
-void project::add_Project(project proj) {
-  project *newProj = proj
+void project::add_Project(project *proj) {
+  project *newProj = proj;
   items.push_back(newProj);
 }	
 
@@ -31,15 +31,15 @@ std::cout << "Project \""<<this -> getName()<<"\" has no projects."<<std::endl;
 }
 else{
 	for(size_t i=0; i<items.size(); i++){
-std::cout<< i+1<<". "<<items.at(i)->getName()<<": "<< items.at(i)->getDescription<<std::endl;
+std::cout<< i+1<<". "<<items.at(i)->getName()<<": "<< items.at(i)->getDescription()<<std::endl;
 }
 }
 }
 
 Base * project::search(string nm) {
-    project *proj = nullptr;
+    Base *proj = nullptr;
     bool found;
-    for (size_t i = 0; i < subs.size(); i++) {
+    for (size_t i = 0; i < items.size(); i++) {
         if (items.at(i)->getName() == nm) {
 	proj = items.at(i);
 	found = true;
