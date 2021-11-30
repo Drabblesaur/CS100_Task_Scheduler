@@ -2,8 +2,10 @@
 Base::Base(){
     name = "";
     description = "";
-
-
+}
+Base::Base(std::string name, std::string description){
+    this->name = name;
+    this->description = description;
 }
 Base::~Base(){};
 
