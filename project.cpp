@@ -52,3 +52,7 @@ std::cout <<'\"' << this->getName() << "\" has no project titled \"" << nm << '\
     
     return proj;
 }
+
+bool project::has_elements() {
+  return !items.empty();
+}
