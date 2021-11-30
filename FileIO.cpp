@@ -11,8 +11,8 @@ using std::vector;
 
 class FileIO{
 public:
-    FileIO();
-    ~FileIO();
+    FileIO() {}
+    ~FileIO() {}
     void readTask(string fileName){
         std::ifstream inFS;
         inFS.open(fileName);

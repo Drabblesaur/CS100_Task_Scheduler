@@ -3,8 +3,8 @@
 class ProjectFactory
 {
     public:
-        ProjectFactory();
-        ~ProjectFactory();
+        ProjectFactory() {}
+        ~ProjectFactory() {}
         project* create(std::string name, std::string description,std::string date){
             project * newProject = new project();
             newProject->setName(name);

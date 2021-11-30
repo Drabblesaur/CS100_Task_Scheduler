@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <algorithm>
 
 using namespace std;
 
@@ -21,6 +22,17 @@ vector <subtask *>subt;
 vector <task *>tasks; 
 char option;
 char s[80];
+
+void viewIncTask();
+void viewProject();
+void PromptTask();
+void viewTodayTask();
+void viewDateTask();
+void viewPriorityTask();
+void viewComTask();
+void viewIncTask();
+void viewDateTask();
+void showSubtasks(task *t);
 
 bool compare(task* t1,task*t2){
     if(t1->get_date_obj().getYear() < t2->get_date_obj().getYear())
@@ -60,15 +72,25 @@ task* usertask(){
  
     cout << " Enter name of task: " << endl;
     getline(cin, name);
+    
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     cout << " Enter task descrition: " << endl;
     getline(cin, description);
 
+    cin.clear();
+    cin.ignore(10000,'\n');
+
     cout << " Enter task due date (Please enter in Month/Day/Year format): " << endl;
     getline(cin, date);
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     cout << " Enter the level of task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
     cin >> priority; 
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     task* newtask = tfactory->create(name, description, date, priority);
     tasks.push_back(newtask);
@@ -87,15 +109,23 @@ Base* userSubTask(){
 
     cout << " Enter name of sub-task: " << endl; 
     getline(cin, name);
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     cout << " Enter sub-task descrition: " << endl;
     getline(cin, description);
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     cout << " Enter sub-task due date (Please enter in Month/Day/Year format): " << endl;
     getline(cin, date);
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     cout << " Enter the level of sub-task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
     cin >> priority; 
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     subtask* newtask = sfactory->createSubtask(name, description, date, priority, complete);
     subt.push_back(newtask);
@@ -110,12 +140,18 @@ Base* userProject(){
     
     cout << " Enter name of project: " << endl;
     getline(cin, name);
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     cout << " Enter project descrition: " << endl;
     getline(cin, description);
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     cout << " Enter project due date (Please enter in Month/Day/Year format): " << endl; 
     getline(cin, date);
+    cin.clear();
+    cin.ignore(10000,'\n');
 
     project* newProject = ffactory->create(name, description, date);
     proj.push_back(newProject);
@@ -127,6 +163,9 @@ Base* markTaskComplete(){
     viewIncTask();
     cout << "Please type the name of the task you wish to mark complete" << endl;
     cin >> taskName;
+    cin.clear();
+    cin.ignore(10000,'\n');
+
     for(int i=0; i<tasks.size(); i++){
         if(tasks[i]->getName() == taskName){
             task = tasks[i];
@@ -144,11 +183,14 @@ Base* makeProjectComplete(){
     cout<< "WARNING: Any Items in the project will be marked as completed"<<endl;
     cout<<"proceed? (Y/N)"<<endl;
     cin >> op2;
+    cin.clear();
+    cin.ignore(10000,'\n');
+
     if (op2 =='Y' || op2 == 'y'){
             viewProject();
         }
         else if (op2 == 'N' || op2 =='n'){
-            return;
+            return nullptr;
         }
         else{
             cout << "INVALID RESPONSE" << endl;
@@ -159,6 +201,9 @@ void TaskSelect(){
     char op1;
     cout << "Would you like to select a Task? (Y/N)" << endl;
     cin >> op1;
+    cin.clear();
+    cin.ignore(10000,'\n');
+
     if (op1 =='Y' || op1 == 'y'){
             PromptTask();
         }
@@ -341,6 +386,9 @@ void PromptTask(){
     viewIncTask();
     cout << "Please type the name of the task you wish to select." << endl;
     cin >> taskName;
+    cin.clear();
+    cin.ignore(10000,'\n');
+
     for(int i=0; i<tasks.size(); i++){
         if(tasks[i]->getName() == taskName){
             task = tasks[i];
@@ -353,6 +401,9 @@ void PromptTask(){
             cout << "This task has subtasks, do you like to view? (Y/N)"<<endl;
             char subview;
             cin >> subview;
+            cin.clear();
+            cin.ignore(10000,'\n');
+
             if (subview =='Y' || subview == 'y'){
                 showSubtasks(task);
             }
@@ -387,6 +438,9 @@ void establishConnection(task* newtask){
     viewProject();
     cout << "select the project you wish to add this task"<< endl;
     cin >> projectName;
+    cin.clear();
+    cin.ignore(10000,'\n');
+
     for(int i=0; i<proj.size(); i++){
         if(proj[i]->getName() == projectName){
             Addedproj = proj[i];
@@ -406,6 +460,9 @@ void promptPTConnection(task* newtask){
     if(!proj.empty()){
         cout << "Would you like to add this task to a Project?(Y/N)" << endl;
         cin >> op3;
+        cin.clear();
+        cin.ignore(10000,'\n');
+
         if (op3 =='Y' || op3 == 'y'){
             establishConnection(newtask);
         }
@@ -433,6 +490,9 @@ int main(){
     do{ 
         printMenu();
         cin >> option;
+        cin.clear();
+        cin.ignore(10000,'\n');
+
         cout << endl;
 
         if (option =='A' || option == 'a'){

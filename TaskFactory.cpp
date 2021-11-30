@@ -1,10 +1,11 @@
 
+
 #include "task.hpp"
 
 class TaskFactory{
     public:
-        TaskFactory();
-        ~TaskFactory();
+        TaskFactory() {}
+        ~TaskFactory() {}
         task* create(std::string name, std::string description, std::string date, int priority){
             task* newTask = new task();
             newTask->set_date(date);

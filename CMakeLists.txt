@@ -8,6 +8,18 @@ ADD_EXECUTABLE(test
 	testing/unit_test.cpp
 )
 
+ADD_EXECUTABLE(task_scheduler
+	main.cpp
+	Base.cpp
+	ProjectFactory.cpp
+	FileIO.cpp
+	SubtaskFactory.cpp
+	TaskFactory.cpp
+	project.cpp
+	subtask.cpp
+	task.cpp
+)
+
 
 
 

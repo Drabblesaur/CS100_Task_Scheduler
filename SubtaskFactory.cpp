@@ -1,12 +1,12 @@
 
+
 #include "subtask.hpp"
-#include "subtask.cpp"
 
 class SubtaskFactory
 {
     public:
-        SubtaskFactory();
-        ~SubtaskFactory();
+        SubtaskFactory() {}
+        ~SubtaskFactory() {}
         subtask* createSubtask(std::string name, std::string description, std::string date,int priority, bool isComplete){
             return new subtask(name, description, priority, date, isComplete);
         }
