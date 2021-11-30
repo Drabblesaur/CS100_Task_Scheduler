@@ -27,7 +27,7 @@ public:
         bool complete;
 
         if (!inFS.is_open()) {
-            std::cout << "Error opening " << fileName << std::endl;
+            //std::cout << "Error opening " << fileName << std::endl;
         }
         inFS >> numVectors;
         for(int i =0; i<numVectors; i++){
@@ -52,7 +52,7 @@ public:
         vector<Base*> projectList;
 
         if (!inFS.is_open()) {
-            std::cout << "Error opening " << fileName << std::endl;
+            //std::cout << "Error opening " << fileName << std::endl;
         }
         inFS >> numVectors;
         for(int i =0; i<numVectors; i++){
@@ -79,7 +79,7 @@ public:
         vector<Base*> subList;
 
         if (!inFS.is_open()) {
-            std::cout << "Error opening " << fileName << std::endl;
+            //std::cout << "Error opening " << fileName << std::endl;
         }
         inFS >> numVectors;
         for(int i =0; i<numVectors; i++){
@@ -106,7 +106,7 @@ public:
 
 
         if (!inFS.is_open()) {
-            std::cout << "Error opening " << filename << std::endl;
+            //std::cout << "Error opening " << filename << std::endl;
         }
         inFS >> numVectors;
         for(int i=0; i<numVectors; i++){

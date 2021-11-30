@@ -204,20 +204,22 @@ void viewTaskMenu(){
     cout << " E - Show Incomplete Tasks" << endl;
 }
 void promptTaskView(){
+    char op5;
     viewTaskMenu();
-    if (option =='A' || option == 'a'){
+    getline(cin, op5);
+    if (op5 =='A' || op5 == 'a'){
             viewTodayTask();
         }
-        else if (option == 'B' || option =='b'){
+        else if (op5 == 'B' || op5 =='b'){
             viewDateTask();
         }
-        else if(option =='C' || option == 'c'){
+        else if(op5 =='C' || op5 == 'c'){
             viewPriorityTask();
         }
-        else if(option == 'D' || option == 'd'){
+        else if(op5 == 'D' || op5 == 'd'){
             viewComTask();
         }
-        else if(option == 'E' || option == 'e'){
+        else if(op5 == 'E' || op5 == 'e'){
             viewIncTask();
         }else{
             cout << "INVALID RESPONSE" << endl;
