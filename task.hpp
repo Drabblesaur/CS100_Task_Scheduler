@@ -34,6 +34,15 @@ class task : public Base {
             isComplete = false;
         }
 
+        task(string nm, string desc, string d, int p) : Base() { // for making new tasks from main
+            this->setName(nm);
+            this->setDescription(desc);
+            datestr = d;
+            date = convert_date();
+            priority = p;
+            isComplete = false;
+        }
+
         task(string nm, string desc, string d, int p, bool c) : Base() { // task constructor for file i/o backup purposes
             this->setName(nm);
             this->setDescription(desc);
