@@ -72,17 +72,17 @@ task* usertask(){
     int priority;
  
     cout << " Enter name of task: " << endl;
-    getline(cin, name);
+    getline(cin.ignore(), name);
     cin.clear();
-    cin.ignore(10000, '\n');
+    //cin.ignore(10000, '\n');
     cout << " Enter task descrition: " << endl;
-    getline(cin, description);
+    getline(cin.ignore(), description);
     cin.clear();
-    cin.ignore(10000, '\n');
+    //cin.ignore(10000, '\n');
     cout << " Enter task due date (Please enter in Month/Day/Year format): " << endl;
-    getline(cin, date);
+    getline(cin.ignore(), date);
     cin.clear();
-    cin.ignore(10000, '\n');
+   // cin.ignore(10000, '\n');
     cout << " Enter the level of task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
     cin >> priority; 
 
