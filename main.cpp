@@ -145,7 +145,7 @@ Base* userSubTask(){
       //  cin.ignore(10000, '\n');
 
         cout << " Enter sub-task description: " << endl;
-        getline(cin.ignore() >> ws, description);
+        getline(cin >> ws, description);
         //cin.clear();
         //cin.ignore(10000, '\n');
         cout << " Enter sub-task due date (Please enter in Month/Day/Year format): " << endl;
@@ -442,17 +442,21 @@ void PromptTask(){
             subtask* sub;
             string subName;
             showSubtasks(task);
-            cout << "Please Select a Subtask to remove" << endl;
-            getline(cin >> ws, subName);
-            //cin.clear();
-            //cin.ignore(10000, '\n');
-            sub = task->remove_subtask(subName);
-            for (size_t i = 0; i < subt.size(); i++) {
-                if (subt.at(i) == sub) {
-                    subt.erase(subt.begin() + i);
+            if(task->has_subtasks()){
+                cout << "Please Select a Subtask to remove" << endl;
+                getline(cin >> ws, subName);
+                //cin.clear();
+                //cin.ignore(10000, '\n');
+                sub = task->remove_subtask(subName);
+                for (size_t i = 0; i < subt.size(); i++) {
+                    if (subt.at(i) == sub) {
+                        subt.erase(subt.begin() + i);
+                    }
                 }
+                cout << "Subtask removed." << endl;
+            }else{
+                return;
             }
-            cout << "Subtask removed." << endl;
         }else if (op6 == 'C' || op6 == 'c'){
             showSubtasks(task);
         }else if (op6 == 'D' || op6 == 'd'){
