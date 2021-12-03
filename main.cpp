@@ -96,16 +96,16 @@ task* usertask(){
     int priority;
  
     cout << " Enter name of task: " << endl;
-    getline(cin.ignore(), name);
-    cin.clear();
+    getline(cin >> ws, name);
+    //cin.clear();
     //cin.ignore(10000, '\n');
     cout << " Enter task description: " << endl;
-    getline(cin.ignore(), description);
-    cin.clear();
+    getline(cin >> ws, description);
+    //cin.clear();
     //cin.ignore(10000, '\n');
     cout << " Enter task due date (Please enter in Month/Day/Year format): " << endl;
-    getline(cin.ignore(), date);
-    cin.clear();
+    getline(cin >> ws, date);
+    //cin.clear();
    // cin.ignore(10000, '\n');
     cout << " Enter the level of task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
     cin >> priority; 
@@ -129,28 +129,28 @@ Base* userSubTask(){
     viewIncTask();
     cout << " Enter name of Task: " << endl;
 
-    getline(cin.ignore(), taskname);
-    cin.clear();
+    getline(cin >> ws, taskname);
+    //cin.clear();
     //cin.ignore(10000, '\n');
 
     t = taskSearch(taskname);
     if (t == NULL){
         cout << " Task not found. Please try again." << endl;
     }else{
-        cin.clear();
-        cin.ignore(10000, '\n');
+        //cin.clear();
+        //cin.ignore(10000, '\n');
         cout << " Enter name of sub-task: " << endl; 
-        getline(cin.ignore(), name);
-        cin.clear();
+        getline(cin >> ws, name);
+        //cin.clear();
       //  cin.ignore(10000, '\n');
 
         cout << " Enter sub-task description: " << endl;
-        getline(cin.igonre(), description);
-        cin.clear();
+        getline(cin.ignore() >> ws, description);
+        //cin.clear();
         //cin.ignore(10000, '\n');
         cout << " Enter sub-task due date (Please enter in Month/Day/Year format): " << endl;
-        getline(cin.ignore(), date);
-        cin.clear();
+        getline(cin >> ws, date);
+        //cin.clear();
         //cin.ignore(10000, '\n');
         cout << " Enter the level of sub-task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
         cin >> priority; 
@@ -168,16 +168,16 @@ Base* userProject(){
     string date; 
     
     cout << " Enter name of project: " << endl;
-    getline(cin.ignore(), name);
-    cin.clear();
+    getline(cin >> ws, name);
+    //cin.clear();
  //   cin.ignore(10000, '\n');
     cout << " Enter project description: " << endl;
-    getline(cin.ignore(), description);
-    cin.clear();
+    getline(cin >> ws, description);
+    //cin.clear();
     //cin.ignore(10000, '\n');/
     cout << " Enter project due date (Please enter in Month/Day/Year format): " << endl; 
-    getline(cin.ignore(), date);
-    cin.clear();
+    getline(cin >> ws, date);
+    //cin.clear();
     //cin.ignore(10000, '\n');
     project* newProject = ffactory->create(name, description, date);
     proj.push_back(newProject);
@@ -189,9 +189,9 @@ Base* markTaskComplete(){
     string taskName = "";
     viewIncTask();
     cout << "Please type the name of the task you wish to mark complete" << endl;
-    getline(cin, taskName);
-    cin.clear();
-    cin.ignore(10000, '\n');
+    getline(cin >> ws, taskName);
+    //cin.clear();
+    //cin.ignore(10000, '\n');
     task = taskSearch(taskName);
     if (task == NULL){
         cout << "Task not found. Please try again." << endl;
@@ -421,9 +421,9 @@ void PromptTask(){
     string taskName = "";
     viewIncTask();
     cout << "Please type the name of the task you wish to select." << endl;
-    getline(cin, taskName);
-    cin.clear();
-    cin.ignore(10000, '\n');
+    getline(cin >> ws, taskName);
+    //cin.clear();
+    //cin.ignore(10000, '\n');
     task = taskSearch(taskName);
     if (task == NULL){
         cout << "Task not found. Please try again." << endl;
@@ -443,9 +443,9 @@ void PromptTask(){
             string subName;
             showSubtasks(task);
             cout << "Please Select a Subtask to remove" << endl;
-            getline(cin, subName);
-            cin.clear();
-            cin.ignore(10000, '\n');
+            getline(cin >> ws, subName);
+            //cin.clear();
+            //cin.ignore(10000, '\n');
             sub = task->remove_subtask(subName);
             for (size_t i = 0; i < subt.size(); i++) {
                 if (subt.at(i) == sub) {
@@ -520,9 +520,9 @@ void establishConnection(task* newtask){
     string projectName= "";
     viewProject();
     cout << "select the project you wish to add this task"<< endl;
-    getline(cin, projectName);
-    cin.clear();
-    cin.ignore(10000, '\n');
+    getline(cin >> ws, projectName);
+    //cin.clear();
+    //cin.ignore(10000, '\n');
 
     for(int i=0; i<proj.size(); i++){
         if(proj[i]->getName() == projectName){
