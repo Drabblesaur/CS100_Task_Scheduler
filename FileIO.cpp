@@ -13,13 +13,14 @@ class FileIO{
 public:
     FileIO() {}
     ~FileIO() {}
-    void readTask(string fileName){
+    vector<task*> readTask(string fileName){
         std::ifstream inFS;
         inFS.open(fileName);
 
-        vector<Base*> taskList;
+        vector<task*> taskList;
 
         int numVectors =0;
+        std::string line;
         std::string name;
         std::string descript;
         int priority;
@@ -28,20 +29,32 @@ public:
 
         if (!inFS.is_open()) {
             //std::cout << "Error opening " << fileName << std::endl;
-        }
-        inFS >> numVectors;
-        for(int i =0; i<numVectors; i++){
-            std::getline(inFS, name);
-            std::getline(inFS,descript);
-            inFS >> priority;
-            std::getline(inFS, date);
-            inFS >> complete;
-            Base* newBase = new task(name, descript, date, priority, complete); 
-            taskList.push_back(newBase);
-        }
-        inFS.close();
-        for (int i = 0; i < taskList.size(); i++) {
-            delete taskList[i];
+            return taskList;
+        }else{
+            std::getline(inFS, line);
+            numVectors = std::stoi(line);
+
+            for(int i =0; i<numVectors; i++){
+                std::getline(inFS, line);
+                name = line;
+                std::getline(inFS,line);
+                descript = line;
+                std::getline(inFS,line);
+                priority = std::stoi(line);
+                std::getline(inFS, line);
+                date = line;
+                std::getline(inFS, line);
+                if(line == "true"){
+                    complete = true;
+                }
+                else{
+                    complete = false;
+                }
+                task* newBase = new task(name, descript, date, priority, complete); 
+                taskList.push_back(newBase);
+            }
+            inFS.close();
+            return taskList;
         }
     }
     void readProject(string fileName){

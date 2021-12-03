@@ -596,10 +596,6 @@ void promptPTConnection(task* newtask){
 int main(){
 
     Fio.readTask("tasks.txt");
-    Fio.readSub("sub.txt");
-    Fio.readProject("proj.txt");
-    Fio.readTaskRelations("task_rel.txt",tasks,subt);
-    Fio.readProjectRelations("proj_rel.txt",proj,tasks);
 
 
     setToday();
@@ -636,10 +632,6 @@ int main(){
 }while(option != 'q' && option != 'Q');
 
 Fio.writeTask("tasks.txt",tasks);
-Fio.writeSub("sub.txt",subt);
-Fio.writeProject("proj.txt",proj);
-Fio.writeTaskRelations("task_rel.txt",tasks);
-Fio.writeProjectRelations("proj_rel.txt",proj);
 
 for (int i = 0; i < subt.size(); i++) {
     delete subt[i];
