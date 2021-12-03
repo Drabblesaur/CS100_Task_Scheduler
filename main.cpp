@@ -431,7 +431,7 @@ void viewDateTask(){
     }
 }
 void viewPriorityTask(){
-    for(int j =5; j <= 0; j--){
+    for(int j =5; j >= 0; j--){
         for(int i =0; i<tasks.size(); i++){
             if(tasks[i]->get_priority() == j){
                 cout << "Name: " << tasks[i]->getName() << endl;
