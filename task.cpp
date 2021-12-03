@@ -104,7 +104,7 @@ void task::print_subtasks() {
             std::cout << "    Description: " << subs.at(i)->getDescription() << std::endl;
             std::cout << "    Due Date: " << subs.at(i)->get_date() << std::endl;
             std::cout << "    Priority: " << subs.at(i)->get_priority() << std::endl;
-            std::cout << "    Completion: " << subs.at(i)->complete() << std::endl;
+            std::cout << "    Completion: " << std::boolalpha << subs.at(i)->complete() << std::endl;
         }
     }
 }

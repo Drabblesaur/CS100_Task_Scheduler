@@ -328,8 +328,8 @@ void viewAllTask(){
         cout << "    Description: " << tasks[i]->getDescription() << endl;
         cout << "    Due Date: " << tasks[i]->get_date() << endl;
         cout << "    Priority: " << tasks[i]->get_priority() << endl;
-        cout << "    Completion: " << tasks[i]->complete() << endl;
-        cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
+        cout << "    Completion: " << boolalpha << tasks[i]->complete() << endl;
+        cout << "    Has Subtasks: " << boolalpha<< tasks[i]->has_subtasks() << endl;
     }
 }
 void viewIncTask(){ //prints Incomplete tasks no sorting
@@ -343,7 +343,7 @@ void viewIncTask(){ //prints Incomplete tasks no sorting
                     cout << "    Priority: " << tasks[i]->get_priority() << endl;
                 }
             }
-            cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
+            cout << "    Has Subtasks: " << boolalpha << tasks[i]->has_subtasks() << endl;
         }
     }
 }
@@ -358,7 +358,7 @@ void viewComTask(){ //prints Complete tasks no sorting
                     cout << "    Priority: " << tasks[i]->get_priority() << endl;
                 }
             }
-            cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
+            cout << "    Has Subtasks: " << boolalpha << tasks[i]->has_subtasks() << endl;
         }
     }
 }
@@ -375,7 +375,7 @@ void viewTodayTask(){
                         cout << "    Priority: " << tasks[i]->get_priority() << endl;
                     }
                 }
-                cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
+                cout << "    Has Subtasks: " << boolalpha << tasks[i]->has_subtasks() << endl;
             }
         }
     }
@@ -393,7 +393,7 @@ void viewDateTask(){
                     cout << "    Priority: " << tasks[i]->get_priority() << endl;
                 }
             }
-            cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
+            cout << "    Has Subtasks: " << boolalpha << tasks[i]->has_subtasks() << endl;
         }
     }
 }
@@ -409,7 +409,7 @@ void viewPriorityTask(){
                         cout << "    Priority: " << tasks[i]->get_priority() << endl;
                     }
                 }
-                cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
+                cout << "    Has Subtasks: " << boolalpha << tasks[i]->has_subtasks() << endl;
             }
         }
     }
