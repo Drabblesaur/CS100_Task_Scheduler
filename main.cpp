@@ -513,7 +513,7 @@ void viewProject(){
     for(int i=0; i<proj.size(); i++){
         cout << "Name: " << proj[i]->getName() <<endl;
         cout << "    Description: "  << proj[i]->getDescription() << endl;
-        if (tasks[i] ->get_date() != " "){
+        if (proj[i] ->get_date() != " "){
             cout << "    Due Date: " << proj[i]->get_date() << endl;
         }
     }
