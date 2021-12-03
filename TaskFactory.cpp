@@ -7,10 +7,7 @@ class TaskFactory{
         TaskFactory() {}
         ~TaskFactory() {}
         task* create(std::string name, std::string description, std::string date, int priority){
-            task* newTask = new task();
-            newTask->set_date(date);
-            newTask->setName(name);
-            newTask->setDescription(description);
+            task* newTask = new task(name, description, date, priority);
             return newTask;
         }
 
