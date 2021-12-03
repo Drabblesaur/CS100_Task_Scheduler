@@ -23,6 +23,7 @@ vector <task *>tasks;
 char option;
 char s[80];
 
+void viewAllTask();
 void viewIncTask();
 void viewProject();
 void PromptTask();
