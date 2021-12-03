@@ -130,7 +130,7 @@ Base* userSubTask(){
 
     getline(cin.ignore(), taskname);
     cin.clear();
-    cin.ignore(10000, '\n');
+    //cin.ignore(10000, '\n');
 
     t = taskSearch(taskname);
     if (t == NULL){
@@ -139,18 +139,18 @@ Base* userSubTask(){
         cin.clear();
         cin.ignore(10000, '\n');
         cout << " Enter name of sub-task: " << endl; 
-        getline(cin, name);
+        getline(cin.ignore(), name);
         cin.clear();
-        cin.ignore(10000, '\n');
+      //  cin.ignore(10000, '\n');
 
         cout << " Enter sub-task description: " << endl;
-        getline(cin, description);
+        getline(cin.igonre(), description);
         cin.clear();
-        cin.ignore(10000, '\n');
+        //cin.ignore(10000, '\n');
         cout << " Enter sub-task due date (Please enter in Month/Day/Year format): " << endl;
-        getline(cin, date);
+        getline(cin.ignore(), date);
         cin.clear();
-        cin.ignore(10000, '\n');
+        //cin.ignore(10000, '\n');
         cout << " Enter the level of sub-task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
         cin >> priority; 
         subtask* newtask = sfactory->createSubtask(name, description, date, priority, complete);
@@ -167,17 +167,17 @@ Base* userProject(){
     string date; 
     
     cout << " Enter name of project: " << endl;
-    getline(cin, name);
+    getline(cin.ignore(), name);
     cin.clear();
-    cin.ignore(10000, '\n');
+ //   cin.ignore(10000, '\n');
     cout << " Enter project description: " << endl;
-    getline(cin, description);
+    getline(cin.ignore(), description);
     cin.clear();
-    cin.ignore(10000, '\n');
+    //cin.ignore(10000, '\n');
     cout << " Enter project due date (Please enter in Month/Day/Year format): " << endl; 
-    getline(cin, date);
+    getline(cin.ignore(), date);
     cin.clear();
-    cin.ignore(10000, '\n');
+    //cin.ignore(10000, '\n');
     project* newProject = ffactory->create(name, description, date);
     proj.push_back(newProject);
 } 
