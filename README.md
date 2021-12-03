@@ -32,7 +32,12 @@ This Class Diagram Implements 2 Design Patterns. The first design pattern is the
 We Picked a Base Design Pattern because it allows us to delegate certain items like marking tasks as complete in the context of a Project. For the Factories, That allows us to easily create these objects in runtime and be used by the client. They helped us to write better code by allowing us to seperate the creation and the structure of the code into two seperate items wwe can then code upon.
 
  ## Screenshots
- > Screenshots of the input/output after running your application
+ ![SubTask requirement](https://github.com/cs100/final-project-jto015-nlin039-abenn031-lgonz173/blob/master/Images/Subtask_req.png)
+ Shows how you need to finish your SubTasks in order to mark your Task as complete.
+ ![Priority View](https://github.com/cs100/final-project-jto015-nlin039-abenn031-lgonz173/blob/master/Images/TasksPriority.png)
+ Shows the Priority View
+ ![Today's View](https://github.com/cs100/final-project-jto015-nlin039-abenn031-lgonz173/blob/master/Images/TasksToday.png)
+ Shows Today's Tasks
  ## Installation/Usage
  If working in the terminal(or in hammer),
  1. Clone Repo.
