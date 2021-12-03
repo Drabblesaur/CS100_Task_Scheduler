@@ -4,35 +4,72 @@
 #include <vector>
 #include <string>
 #include "Date.hpp"
+#include "Base.hpp"
+#include "subtask.hpp"
 
 using std::string;
 using std::vector;
-class task {
+class task : public Base {
     private:
-        string name; 
-        string datestr; // how to implement date? string, custom date object etc
+        string datestr;
+        //Date date;
         int priority;
         bool isComplete;
-        vector<task *> subs;
-        bool has_subtasks();                            // returns true if a task has subtasks
+        vector<subtask *> subs;                           // returns true if a task has subtasks
                                                         // private helper for mark_as_complete()
     public:
-        task();
+        task() : Base() {
+            this->set_date("");
+            //date = convert_date();
+            priority = 0;
+            isComplete = false;
+        }
+
+
+        task(string d, int p) : Base() {
+            this->set_date(d);
+            //date = convert_date();
+            priority = p;
+            isComplete = false;
+        }
+
+        task(string nm, string desc, string d, int p) : Base() { // for making new tasks from main
+            this->set_date(d);
+            this->setName(nm);
+            this->setDescription(desc);
+            datestr = d;
+            //date = convert_date();
+            priority = p;
+            isComplete = false;
+        }
+
+        task(string nm, string desc, string d, int p, bool c) : Base() { // task constructor for file i/o backup purposes
+            this->set_date(d);
+            this->setName(nm);
+            this->setDescription(desc);
+            
+            //date = convert_date();
+            priority = p;
+            isComplete = c;
+        }
+
         ~task();
-        task(string nm, string d, int p); // potentially update depending on date format
-        string get_name();
-        void set_name(string n);
-        string get_date();
-        void set_date(string d);
-        Date convert_date();
+        bool has_subtasks(); 
+        bool complete();                                // returns current state of completion
+        vector<subtask*> get_subtasks();
+        //Date convert_date();
+        //string get_date();
+        //void set_date(string d);
         int get_priority();
         void set_priority(int p);
-        bool complete();                                // returns current state of completion
         void mark_as_complete();                        // sets current task to complete
         void mark_as_incomplete();                      // sets current task to inomplete
-        void add_subtask();                             // pushes new subtask to subs vector (default)
+        void add_subtask(subtask* sub);                             // pushes new subtask to subs vector (default)
         void add_subtask(string nm, string d, int p);   // pushes new subtask to subs vector (parameterized)
-        void complete_subtask(string nm);
+        void complete_subtask(string nm);               // mark a given subtask as complete
+        subtask* remove_subtask(string nm);                 // remove a given subtask and return
+        void print_subtasks();                          // take a guess
+        subtask * search(string nm);
 };
 
 #endif
