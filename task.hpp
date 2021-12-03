@@ -67,6 +67,7 @@ class task : public Base {
         void add_subtask(subtask* sub);                             // pushes new subtask to subs vector (default)
         void add_subtask(string nm, string d, int p);   // pushes new subtask to subs vector (parameterized)
         void complete_subtask(string nm);               // mark a given subtask as complete
+        subtask* remove_subtask(string nm);                 // remove a given subtask and return
         void print_subtasks();                          // take a guess
         subtask * search(string nm);
 };

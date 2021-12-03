@@ -50,7 +50,30 @@ void setToday(){
     strftime(s, MAXLEN, "%m/%d/%Y", localtime(&t));
 
 }
-
+task* taskSearch(string name){
+    for(int i=0; i<tasks.size(); i++){
+        if(tasks[i]->getName() == name){
+            return tasks[i];
+        }
+    } 
+    return NULL;
+}
+project* projectSearch(string name){
+    for(int i=0; i<proj.size(); i++){
+        if(proj[i]->getName() == name){
+            return proj[i];
+        }
+    } 
+    return NULL;
+}
+subtask* subtaskSearch(string name){
+    for(int i=0; i<subt.size(); i++){
+        if(subt[i]->getName() == name){
+            return subt[i];
+        }
+    } 
+    return NULL;
+}
 void printMenu(){
     cout << " Select an option from the Menu:" << endl;
     cout << " A - Add A Task" << endl;
@@ -63,7 +86,7 @@ void printMenu(){
     cout << " Please enter Q or q to quit... " << endl; 
 }
 
-// for making new tasks
+// Creates a Task
 task* usertask(){
     TaskFactory * tfactory = new TaskFactory();
     string name;
@@ -75,7 +98,7 @@ task* usertask(){
     getline(cin.ignore(), name);
     cin.clear();
     //cin.ignore(10000, '\n');
-    cout << " Enter task descrition: " << endl;
+    cout << " Enter task description: " << endl;
     getline(cin.ignore(), description);
     cin.clear();
     //cin.ignore(10000, '\n');
@@ -92,36 +115,51 @@ task* usertask(){
     //append into tasks vector
 }
 
-// Making new sub tasks  
+// Asks for an existing Incomplete task and creates a Subtask to be assigned.
 Base* userSubTask(){
     SubtaskFactory * sfactory = new SubtaskFactory();
+    string taskname;
+    task* t;
     string name;
     string date; 
     string description;
     bool complete; 
     int priority;
+    viewIncTask();
+    cout << " Enter name of Task: " << endl;
 
-    cout << " Enter name of sub-task: " << endl; 
-    getline(cin, name);
+    getline(cin.ignore(), taskname);
     cin.clear();
     cin.ignore(10000, '\n');
 
-    cout << " Enter sub-task descrition: " << endl;
-    getline(cin, description);
-    cin.clear();
-    cin.ignore(10000, '\n');
-    cout << " Enter sub-task due date (Please enter in Month/Day/Year format): " << endl;
-    getline(cin, date);
-    cin.clear();
-    cin.ignore(10000, '\n');
-    cout << " Enter the level of sub-task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
-    cin >> priority; 
+    t = taskSearch(taskname);
+    if (t == NULL){
+        cout << " Task not found. Please try again." << endl;
+    }else{
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << " Enter name of sub-task: " << endl; 
+        getline(cin, name);
+        cin.clear();
+        cin.ignore(10000, '\n');
 
-    subtask* newtask = sfactory->createSubtask(name, description, date, priority, complete);
-    subt.push_back(newtask);
+        cout << " Enter sub-task description: " << endl;
+        getline(cin, description);
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << " Enter sub-task due date (Please enter in Month/Day/Year format): " << endl;
+        getline(cin, date);
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << " Enter the level of sub-task priority from a level of 1-5 (1 being low priority, 5 being the most urgent): " << endl;
+        cin >> priority; 
+        subtask* newtask = sfactory->createSubtask(name, description, date, priority, complete);
+        subt.push_back(newtask);
+        t->add_subtask(newtask);
+    }
 }
 
-//for making new projects
+// Creates an Empty Project
 Base* userProject(){
     ProjectFactory * ffactory = new ProjectFactory(); 
     string name; 
@@ -132,7 +170,7 @@ Base* userProject(){
     getline(cin, name);
     cin.clear();
     cin.ignore(10000, '\n');
-    cout << " Enter project descrition: " << endl;
+    cout << " Enter project description: " << endl;
     getline(cin, description);
     cin.clear();
     cin.ignore(10000, '\n');
@@ -144,6 +182,7 @@ Base* userProject(){
     proj.push_back(newProject);
 } 
 
+// Marks a task as complete (need to check subtasks)
 Base* markTaskComplete(){
     task* task = nullptr;
     string taskName = "";
@@ -152,19 +191,15 @@ Base* markTaskComplete(){
     getline(cin, taskName);
     cin.clear();
     cin.ignore(10000, '\n');
-
-    for(int i=0; i<tasks.size(); i++){
-        if(tasks[i]->getName() == taskName){
-            task = tasks[i];
-        }
-    } 
-    if(task == nullptr){
-        cout<<"Sorry! Can't find your task"<<endl;
+    task = taskSearch(taskName);
+    if (task == NULL){
+        cout << "Task not found. Please try again." << endl;
     }else{
-    task->mark_as_complete();
+        task->mark_as_complete();
     }
 }
 
+//INCOMPLETE 
 Base* makeProjectComplete(){
     char op2;
     cout<< "WARNING: Any Items in the project will be marked as completed"<<endl;
@@ -181,6 +216,7 @@ Base* makeProjectComplete(){
         }
 
 }
+//Ask user if they wish to select a particular task.
 void TaskSelect(){
     char op1;
     cout << "Would you like to select a Task? (Y/N)" << endl;
@@ -193,8 +229,10 @@ void TaskSelect(){
         }
         else{
             cout << "INVALID RESPONSE" << endl;
+            return;
         }
 }
+//prints Tasks Menu
 void viewTaskMenu(){
     cout << " Select an option from the Menu:" << endl;
     cout << " A - Show Today's tasks" << endl;
@@ -202,55 +240,125 @@ void viewTaskMenu(){
     cout << " C - Show tasks via priority" << endl;
     cout << " D - Show Completed Tasks" << endl; 
     cout << " E - Show Incomplete Tasks" << endl;
+    cout << " F - Show All Tasks" << endl;
+    cout << " Q - Return to Main Menu" << endl;
 }
+//Print Task Operation Menu
+void printTaskOperations(){
+    cout << " Select an option from the Menu:" << endl;
+    cout << " A - Mark Task Incomplete (Completed Tasks Only)" << endl;
+    cout << " B - Remove Subtask" << endl;
+    cout << " C - View Subtasks" << endl;
+    cout << " D - View Full Task Details" << endl;
+    cout << " Q - Return to Main Menu" << endl;
+}
+// View Tasks and check in tasks is empty
 void promptTaskView(){
+    bool hascompleted = false;
+    bool isIncomplete = false;
     char op5;
     viewTaskMenu();
     cin >> op5;
     if (op5 =='A' || op5 == 'a'){
+        if (tasks.empty()){
+            cout<<"No tasks to show"<<endl;
+        }else{
             viewTodayTask();
+            TaskSelect();
+        }
         }
         else if (op5 == 'B' || op5 =='b'){
-            viewDateTask();
+            if (tasks.empty()){
+                cout<<"No tasks to show"<<endl;
+            }else{
+                viewDateTask();
+                TaskSelect();
+            }
         }
         else if(op5 =='C' || op5 == 'c'){
-            viewPriorityTask();
+            if (tasks.empty()){
+                cout<<"No tasks to show"<<endl;
+            }else{
+                viewPriorityTask();
+                TaskSelect();
+            }
         }
         else if(op5 == 'D' || op5 == 'd'){
-            viewComTask();
+            for (int i = 0; i < tasks.size(); i++){
+                if (tasks[i]->complete() == true){
+                    hascompleted = true;
+                }
+            }
+            if (hascompleted == false){
+                cout << "No completed tasks" << endl;
+            }else{
+                viewComTask();
+                TaskSelect();
+            }
         }
         else if(op5 == 'E' || op5 == 'e'){
-            viewIncTask();
+            for (int i = 0; i < tasks.size(); i++){
+                if (tasks[i]->complete() == false){
+                    isIncomplete = true;
+                }
+            }
+            if (isIncomplete == true){
+                viewIncTask();
+                TaskSelect();
+            }else{
+                cout << "All Tasks Complete!" << endl;
+            }
+        }else if(op5 == 'F' || op5 == 'f'){
+            if (tasks.empty()){
+                cout<<"No tasks to show"<<endl;
+            }else{
+                viewAllTask();
+                TaskSelect();
+            }
+        }else if(op5 == 'Q' || op5 == 'q'){
+            return;
         }else{
-            cout << "INVALID RESPONSE" << endl;
+            cout << "Invalid input. Please try again." << endl;
         }
-    TaskSelect();
+}
+//ALL TASK PRINTS
+void viewAllTask(){
+    for (int i = 0; i < tasks.size(); i++){
+        cout << "Name: " << tasks[i]->getName() << endl;
+        cout << "    Description: " << tasks[i]->getDescription() << endl;
+        cout << "    Due Date: " << tasks[i]->get_date() << endl;
+        cout << "    Priority: " << tasks[i]->get_priority() << endl;
+        cout << "    Completion: " << tasks[i]->complete() << endl;
+        cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
+    }
 }
 void viewIncTask(){ //prints Incomplete tasks no sorting
     for(int i=0; i<tasks.size(); i++){
         if(!tasks[i]->complete()){
-            cout << tasks[i] ->getName() << endl;
-            cout << "    " << tasks[i] ->getDescription() << endl;
+            cout << "Name: " << tasks[i]->getName() << endl;
+            cout << "    Description: " << tasks[i]->getDescription() << endl;
             if (tasks[i] ->get_date() != " "){
                 if(tasks[i]->get_priority() != 0){
-                    cout << "    " << tasks[i] ->get_date() << endl;
-                    cout << "    " << tasks[i]->get_priority() << endl;
+                    cout << "    Due Date: " << tasks[i]->get_date() << endl;
+                    cout << "    Priority: " << tasks[i]->get_priority() << endl;
                 }
             }
+            cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
         }
     }
 }
 void viewComTask(){ //prints Complete tasks no sorting
     for(int i=0; i<tasks.size(); i++){
         if(tasks[i]->complete()){
-            cout << tasks[i] ->getName() << endl;
-            cout << "    " << tasks[i] ->getDescription() << endl;
+            cout << "Name: " << tasks[i]->getName() << endl;
+            cout << "    Description: " << tasks[i]->getDescription() << endl;
             if (tasks[i] ->get_date() != " "){
                 if(tasks[i]->get_priority() != 0){
-                    cout << "    " << tasks[i] ->get_date() << endl;
-                    cout << "    " << tasks[i]->get_priority() << endl;
+                    cout << "    Due Date: " << tasks[i]->get_date() << endl;
+                    cout << "    Priority: " << tasks[i]->get_priority() << endl;
                 }
             }
+            cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
         }
     }
 }
@@ -259,14 +367,15 @@ void viewTodayTask(){
     for(int i=0; i<tasks.size();i++){
         if(tasks[i]->get_date() == s){
             if(!tasks[i]->complete()){
-                cout << tasks[i] ->getName() << endl;
-                cout << "    " << tasks[i] ->getDescription() << endl;
+                cout << "Name: " << tasks[i]->getName() << endl;
+                cout << "    Description: " << tasks[i]->getDescription() << endl;
                 if (tasks[i] ->get_date() != " "){
                     if(tasks[i]->get_priority() != 0){
-                        cout << "    " << tasks[i] ->get_date() << endl;
-                        cout << "    " << tasks[i]->get_priority() << endl;
+                        cout << "    Due Date: " << tasks[i]->get_date() << endl;
+                        cout << "    Priority: " << tasks[i]->get_priority() << endl;
                     }
                 }
+                cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
             }
         }
     }
@@ -276,102 +385,93 @@ void viewDateTask(){
     sort(dateSorted.begin(),dateSorted.end(),compare);
     for(int i=0; i<dateSorted.size(); i++){
         if(!dateSorted[i]->complete()){
-            cout << dateSorted[i] ->getName() << endl;
-            cout << "    " << dateSorted[i] ->getDescription() << endl;
+            cout << "Name: " << tasks[i]->getName() << endl;
+            cout << "    Description: " << tasks[i]->getDescription() << endl;
             if (dateSorted[i] ->get_date() != " "){
                 if(dateSorted[i]->get_priority() != 0){
-                    cout << "    " << dateSorted[i] ->get_date() << endl;
-                    cout << "    " << dateSorted[i]->get_priority() << endl;
+                    cout << "    Due Date: " << tasks[i]->get_date() << endl;
+                    cout << "    Priority: " << tasks[i]->get_priority() << endl;
                 }
             }
+            cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
         }
     }
 }
 void viewPriorityTask(){
-    for(int i =0; i<tasks.size(); i++){
-        if(tasks[i]->get_priority() == 5){
-            cout << tasks[i] ->getName() << endl;
-            cout << "    " << tasks[i] ->getDescription() << endl;
-            if (tasks[i] ->get_date() != " "){
-                if(tasks[i]->get_priority() != 0){
-                    cout << "    " << tasks[i] ->get_date() << endl;
-                    cout << "    " << tasks[i]->get_priority() << endl;
-                }
-            }
-        }
-    }
+    for(int j =5; j <= 0; j--){
         for(int i =0; i<tasks.size(); i++){
-        if(tasks[i]->get_priority() == 4){
-            cout << tasks[i] ->getName() << endl;
-            cout << "    " << tasks[i] ->getDescription() << endl;
-            if (tasks[i] ->get_date() != " "){
-                if(tasks[i]->get_priority() != 0){
-                    cout << "    " << tasks[i] ->get_date() << endl;
-                    cout << "    " << tasks[i]->get_priority() << endl;
+            if(tasks[i]->get_priority() == j){
+                cout << "Name: " << tasks[i]->getName() << endl;
+                cout << "    Description: " << tasks[i]->getDescription() << endl;
+                if (tasks[i] ->get_date() != " "){
+                    if(tasks[i]->get_priority() != 0){
+                        cout << "    Due Date: " << tasks[i]->get_date() << endl;
+                        cout << "    Priority: " << tasks[i]->get_priority() << endl;
+                    }
                 }
+                cout << "    Has Subtasks: " << tasks[i]->has_subtasks() << endl;
             }
         }
     }
-        for(int i =0; i<tasks.size(); i++){
-        if(tasks[i]->get_priority() == 3){
-            cout << tasks[i] ->getName() << endl;
-            cout << "    " << tasks[i] ->getDescription() << endl;
-            if (tasks[i] ->get_date() != " "){
-                if(tasks[i]->get_priority() != 0){
-                    cout << "    " << tasks[i] ->get_date() << endl;
-                    cout << "    " << tasks[i]->get_priority() << endl;
-                }
-            }
-        }
-    }
-        for(int i =0; i<tasks.size(); i++){
-        if(tasks[i]->get_priority() == 2){
-            cout << tasks[i] ->getName() << endl;
-            cout << "    " << tasks[i] ->getDescription() << endl;
-            if (tasks[i] ->get_date() != " "){
-                if(tasks[i]->get_priority() != 0){
-                    cout << "    " << tasks[i] ->get_date() << endl;
-                    cout << "    " << tasks[i]->get_priority() << endl;
-                }
-            }
-        }
-    }
-        for(int i =0; i<tasks.size(); i++){
-        if(tasks[i]->get_priority() == 1){
-            cout << tasks[i] ->getName() << endl;
-            cout << "    " << tasks[i] ->getDescription() << endl;
-            if (tasks[i] ->get_date() != " "){
-                if(tasks[i]->get_priority() != 0){
-                    cout << "    " << tasks[i] ->get_date() << endl;
-                    cout << "    " << tasks[i]->get_priority() << endl;
-                }
-            }
-        }
-    }
-        for(int i =0; i<tasks.size(); i++){
-        if(tasks[i]->get_priority() == 0){
-            cout << tasks[i] ->getName() << endl;
-            cout << "    " << tasks[i] ->getDescription() << endl;
-            if (tasks[i] ->get_date() != " "){
-                if(tasks[i]->get_priority() != 0){
-                    cout << "    " << tasks[i] ->get_date() << endl;
-                    cout << "    " << tasks[i]->get_priority() << endl;
-                }
-            }
-        }
-    }
-
-    
 }
+//Searchs for the task and asks what to do with it
 void PromptTask(){
-    task* task = nullptr;
+    task* task;
     string taskName = "";
     viewIncTask();
     cout << "Please type the name of the task you wish to select." << endl;
     getline(cin, taskName);
     cin.clear();
     cin.ignore(10000, '\n');
-
+    task = taskSearch(taskName);
+    if (task == NULL){
+        cout << "Task not found. Please try again." << endl;
+    }else{
+        printTaskOperations();
+        char op6;
+        cin >> op6;
+        if (op6 == 'A' || op6 == 'a'){
+            if(task->complete()){
+                task->mark_as_incomplete();
+                cout << "Task marked as incomplete." << endl;
+            }else{
+                cout << "Task already marked as incomplete." << endl;
+            }
+        }else if (op6 == 'B' || op6 == 'b'){
+            subtask* sub;
+            string subName;
+            showSubtasks(task);
+            cout << "Please Select a Subtask to remove" << endl;
+            getline(cin, subName);
+            cin.clear();
+            cin.ignore(10000, '\n');
+            sub = task->remove_subtask(subName);
+            for (size_t i = 0; i < subt.size(); i++) {
+                if (subt.at(i) == sub) {
+                    subt.erase(subt.begin() + i);
+                }
+            }
+            cout << "Subtask removed." << endl;
+        }else if (op6 == 'C' || op6 == 'c'){
+            showSubtasks(task);
+        }else if (op6 == 'D' || op6 == 'd'){
+            cout << "Name: " << task->getName() << endl;
+            cout << "    Description: " << task->getDescription() << endl;
+            cout << "    Due Date: " << task->get_date() << endl;
+            cout << "    Priority: " << task->get_priority() << endl;
+            cout << "    Completion: " << task->complete() << endl;
+            cout << "    Subtasks: " << task->has_subtasks() << endl;
+            if(task->has_subtasks()){
+                showSubtasks(task);
+            }
+        }else if (op6 == 'Q' || op6 == 'Q'){
+            return;
+        }else{
+            cout << "Invalid input. Please try again." << endl;
+            return;
+        }
+    }
+    /*
     for(int i=0; i<tasks.size(); i++){
         if(tasks[i]->getName() == taskName){
             task = tasks[i];
@@ -397,17 +497,19 @@ void PromptTask(){
             cout << "Sorry no avaliable options for this task"<<endl;
         }
     }
+    */
 }
+//Shows Subtasks from a task
 void showSubtasks(task* t){
     t->print_subtasks();
 }
 
 void viewProject(){
     for(int i=0; i<proj.size(); i++){
-        cout << proj[i]->getName() <<endl;
-        cout << "    " << proj[i]->getDescription() << endl;
+        cout << "Name: " << proj[i]->getName() <<endl;
+        cout << "    Description: "  << proj[i]->getDescription() << endl;
         if (tasks[i] ->get_date() != " "){
-            cout << "    " << proj[i]->getDescription() << endl;
+            cout << "    Due Date: " << proj[i]->getDescription() << endl;
         }
     }
 

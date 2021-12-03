@@ -80,14 +80,31 @@ void task::complete_subtask(string nm) {
 bool task::has_subtasks() {                    // returns true if a task has subtasks
     return !subs.empty();                      // if subs.empty() is true, has_subtasks() == false
 }                                              // basically, has_subtasks() is the negation of subs.empty()
+subtask* task::remove_subtask(string nm){
+    subtask *sub = search(nm);
+    if (sub == nullptr) {
+        return nullptr;
+    }
+    for (size_t i = 0; i < subs.size(); i++) {
+        if (subs.at(i) == sub) {
+            subs.erase(subs.begin() + i);
+            return sub;
+        }
+    }
+    return nullptr;
 
+}
 void task::print_subtasks() {
     if (subs.empty()) {
         std::cout << "Task \"" << this->getName() << "\" has no subtasks." << std::endl;
     }
     else {
         for (size_t i = 0; i < subs.size(); i++) {
-            std::cout << i + 1 << ". " << subs.at(i)->getName() << std::endl;
+            std::cout <<"S"<< (i+1) << " Name: " << subs.at(i)->getName() << std::endl;
+            std::cout << "    Description: " << subs.at(i)->getDescription() << std::endl;
+            std::cout << "    Due Date: " << subs.at(i)->get_date() << std::endl;
+            std::cout << "    Priority: " << subs.at(i)->get_priority() << std::endl;
+            std::cout << "    Completion: " << subs.at(i)->complete() << std::endl;
         }
     }
 }
