@@ -205,7 +205,9 @@ Base* markTaskComplete(){
         cout << "Task not found. Please try again." << endl;
     }else{
         task->mark_as_complete();
-    }
+	cout<<"Task has been marked as complete."<<endl;
+	cout<<endl;    
+}
 }
 
 //INCOMPLETE 
