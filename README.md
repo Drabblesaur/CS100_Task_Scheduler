@@ -17,7 +17,7 @@ This project will be written in C++ and will be run via the terminal. (This may 
 
 ### I/O and Features
 
-In this application, a user can create tasks including a title, description, classification (e.g. personal, work, study), priority, duration, and due date. Some of these features can also be optional. Users can also create task lists where each list includes multiple tasks. Task lists can represent larger tasks that have subtasks within them. Users can display, edit, and delete tasks and task lists. Users should also be able to undo these operations.
+In this application, a user can create tasks including a title, description, classification (e.g. personal, work, study), priority, duration, and due date. Users can also create Projects that includes multiple tasks. Task lists can represent larger tasks that have subtasks within them. Tasks that have subtasks are required to have their Subtasks finished or removed before marked as complete. Users can display, edit, and delete tasks and Projects. Users can view their tasks in intuitive ways such as via Date, Priority, and even check Today's Tasks. After ending the program, the system will store the created objects in a file such that when you start up the progrma again they automatically load the relavant objects.
 
 ### TLDR: Features
 
@@ -29,25 +29,11 @@ Create Detailed Tasks
 
 ## Class Diagram
 ![Class Diagram](https://github.com/cs100/final-project-jto015-nlin039-abenn031-lgonz173/blob/master/Images/New%20UML.png?raw=true)
-This Class Diagram Implements 2 Design Patterns. The first design pattern is the Composite Design Pattern. This is implemented in the construction of the Project and the Tasks class being subclasses to the Abstract Class Base(Name TBD). Next is the Factory Design Pattern. This is a pseudo Abstract design pattern. (We may or may not need the abstractFactory to be implemeted) But with the Factories such as TaskFactory and ProjectFatory, the client can create these objects much faster.
- 
- > ## Phase III
- > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
- > * Before the meeting you should perform a sprint plan like you did in Phase II.
- > * You should also update this README file by adding the following:
- >   * What design patterns did you use? For each design pattern you must explain in 4-5 sentences:
- >     * Why did you pick this pattern? And what feature did you implement with it?
- >     * How did the design pattern help you write better code?
- >   * An updated class diagram that reflects the design patterns you used. You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description).
- >   * Make sure your README file (and Project board) are up-to-date reflecting the current status of your project. Previous versions of the README file should still be visible through your commit history.
-> 
-> During the meeting with your TA you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
+This Class Diagram Implements 2 Design Patterns. The first design pattern is the Composite Design Pattern. This is implemented in the construction of the Project and the Tasks class being subclasses to the Abstract Class Base. Next is the Factory Design Pattern. There are 3 Factories we are creating, each represent a different essential file to be created in runtime.
 
- 
+## Design Patterns we used
+We Picked a Base Design Pattern because it allows us to delegate certain items like marking tasks as complete in the context of a Project. For the Factories, That allows us to easily create these objects in runtime and be used by the client. They helped us to write better code by 
+
  > ## Final deliverable
  > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
  > Before the demo, you should do the following:
