@@ -4,7 +4,7 @@
 #include <string> 
 
 project::~project(){
-for (size_t i = 0; i < items.size(); i++) {
+    for (size_t i = 0; i < items.size(); i++) {
         delete items.at(i);
     }
 }

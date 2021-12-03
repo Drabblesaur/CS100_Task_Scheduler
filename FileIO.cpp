@@ -24,7 +24,7 @@ public:
         std::string descript;
         int priority;
         std::string date;
-        bool complete;
+        bool complete = false;
 
         if (!inFS.is_open()) {
             //std::cout << "Error opening " << fileName << std::endl;
@@ -40,6 +40,9 @@ public:
             taskList.push_back(newBase);
         }
         inFS.close();
+        for (int i = 0; i < taskList.size(); i++) {
+            delete taskList[i];
+        }
     }
     void readProject(string fileName){
         std::ifstream inFS;
@@ -48,7 +51,7 @@ public:
         std::string name;
         std::string descript;
         std::string date;
-        bool complete;
+        bool complete = false;;
         vector<Base*> projectList;
 
         if (!inFS.is_open()) {
@@ -65,6 +68,9 @@ public:
 
         }
         inFS.close();
+        for (int i = 0; i < projectList.size(); i++) {
+            delete projectList[i];
+        }
     }
     void readSub(string fileName){
         std::ifstream inFS;
@@ -75,7 +81,7 @@ public:
         std::string descript;
         int priority;
         std::string date;
-        bool complete;
+        bool complete = false;
         vector<Base*> subList;
 
         if (!inFS.is_open()) {
@@ -92,6 +98,9 @@ public:
             subList.push_back(newBase);
         }
         inFS.close();
+        for (int i = 0; i < subList.size(); i++) {
+            delete subList[i];
+        }
     }
     void readTaskRelations(string filename, vector<task*> taskList, vector<subtask*>sublist){
         std::ifstream inFS;
@@ -101,8 +110,8 @@ public:
         int numSubs =0;
         std::string name;
         std::string TaskName;
-        task* taskPtr;
-        subtask* subPtr;
+        task* taskPtr = nullptr;
+        subtask* subPtr = nullptr;
 
 
         if (!inFS.is_open()) {
@@ -140,8 +149,8 @@ public:
         int numTasks =0;
         std::string name;
         std::string projectName;
-        project* projectPtr;
-        Base* itemptr;
+        project* projectPtr = nullptr;
+        Base* itemptr = nullptr;
 
         inFS >> numVectors;
         for(int i=0; i<numVectors; i++){

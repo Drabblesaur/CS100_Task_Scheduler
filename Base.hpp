@@ -27,7 +27,7 @@ class Base{
         void set_date(std::string d);    //Takes a string of form MM/DD/YYYY -> Date obj and store in class.
         Date convert_date();
         Date get_date_obj();
-       
+        virtual void nothing() {return;}
 };
 
 #endif

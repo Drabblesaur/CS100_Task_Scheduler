@@ -112,6 +112,8 @@ task* usertask(){
 
     task* newtask = tfactory->create(name, description, date, priority);
     tasks.push_back(newtask);
+
+    delete tfactory;
     return newtask;
     //append into tasks vector
 }
@@ -136,6 +138,8 @@ Base* userSubTask(){
     t = taskSearch(taskname);
     if (t == NULL){
         cout << " Task not found. Please try again." << endl;
+        delete sfactory;
+        return nullptr;
     }else{
         //cin.clear();
         //cin.ignore(10000, '\n');
@@ -157,6 +161,8 @@ Base* userSubTask(){
         subtask* newtask = sfactory->createSubtask(name, description, date, priority, complete);
         subt.push_back(newtask);
         t->add_subtask(newtask);
+        delete sfactory;
+        return newtask;
     }
 }
 
@@ -181,6 +187,8 @@ Base* userProject(){
     //cin.ignore(10000, '\n');
     project* newProject = ffactory->create(name, description, date);
     proj.push_back(newProject);
+    delete ffactory;
+    return newProject;
 } 
 
 // Marks a task as complete (need to check subtasks)
@@ -207,7 +215,31 @@ Base* makeProjectComplete(){
     cout<<"proceed? (Y/N)"<<endl;
     cin >> op2;
     if (op2 =='Y' || op2 == 'y'){
-            viewProject();
+            string projName;
+            cout << "Please type the name of the project you wish to mark complete" << endl;
+            getline(cin >> ws, projName);
+            project *p = projectSearch(projName);
+            if (p == NULL) {
+                cout << "Project not found. Please try again." << endl;
+            } else {
+                vector<Base *> taskVec = p->get_items(); // taskVec = all tasks in project p
+
+                for (size_t i = 0; i < taskVec.size(); i++) { // iterate over every element in project
+                    Base *b = taskVec.at(i);		// b = base pointer for current element in project
+                    task *t = dynamic_cast<task*>(b);   // t = cast to task to use get_subtasks, has_subtasks, and subtask::mark_as_complete()
+                    if (t->has_subtasks()) { // if task held at current element has subtasks, iterate over them and mark as complete
+                        vector<subtask*> subVec = t->get_subtasks();
+                        for (size_t j = 0; j < subVec.size(); j++) {
+                            subVec[j]->mark_as_complete();
+                        }
+                        t->mark_as_complete();		// once subtasks are completed, this should complete task
+                    } else {
+                        t->mark_as_complete();          // if no subtasks, mark the task as complete
+                    }
+                }
+                p->mark_as_complete();
+            }
+            
         }
         else if (op2 == 'N' || op2 =='n'){
             return nullptr;
@@ -516,6 +548,7 @@ void viewProject(){
         if (proj[i] ->get_date() != " "){
             cout << "    Due Date: " << proj[i]->get_date() << endl;
         }
+            cout << "    Completion: " << boolalpha << proj[i]->complete() << endl;
     }
 
 }
@@ -561,6 +594,7 @@ void promptPTConnection(task* newtask){
     }
 }
 int main(){
+
     Fio.readTask("tasks.txt");
     Fio.readSub("sub.txt");
     Fio.readProject("proj.txt");
@@ -606,4 +640,18 @@ Fio.writeSub("sub.txt",subt);
 Fio.writeProject("proj.txt",proj);
 Fio.writeTaskRelations("task_rel.txt",tasks);
 Fio.writeProjectRelations("proj_rel.txt",proj);
+
+for (int i = 0; i < subt.size(); i++) {
+    delete subt[i];
+}
+
+
+for (int i = 0; i < proj.size(); i++) {
+    delete proj[i];
+}
+
+
+for (int i = 0; i < tasks.size(); i++) {
+    delete tasks[i];
+}
 }

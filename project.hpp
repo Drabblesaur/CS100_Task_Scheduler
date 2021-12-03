@@ -36,7 +36,7 @@ public:
 	}
 	
 	~project();        
-
+        bool complete() {return isComplete;}
 	void add_task();
 	bool has_elements();
     void add_task(string s1, string s2, int i);
@@ -46,6 +46,7 @@ public:
 	void add_item(Base* b);
 	void print_project();
 	Base * search(string nm);
-	
+	//virtual void nothing() {return;}
+	void mark_as_complete() {isComplete = true;}
 };
 #endif
