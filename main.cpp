@@ -174,7 +174,7 @@ Base* userProject(){
     cout << " Enter project description: " << endl;
     getline(cin.ignore(), description);
     cin.clear();
-    //cin.ignore(10000, '\n');
+    //cin.ignore(10000, '\n');/
     cout << " Enter project due date (Please enter in Month/Day/Year format): " << endl; 
     getline(cin.ignore(), date);
     cin.clear();
